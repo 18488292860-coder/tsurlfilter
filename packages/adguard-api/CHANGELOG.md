@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Removed
+
+- Removed unused `src/local_script_rules.json` (~3.3 MB). The file was never
+  imported or bundled, and `@adguard/api` downloads filters at runtime so
+  pre-built local script rules cannot be kept up-to-date at build time.
+
 ## [4.0.0] - 2025-03-04
 
 ### Changed
