@@ -560,4 +560,89 @@ describe('Html rule selector', () => {
         const notMatchedElements = selector.getMatchedElements(document);
         expect(notMatchedElements).toHaveLength(0);
     });
+
+    it('checks special selector :contains() - large regex quantifier below 65536', () => {
+        // "Example" is 7 chars; pad to exactly 65535 total innerHTML chars
+        document.body.innerHTML = `
+        <h1 id="matched">Example${'x'.repeat(65528)}</h1>
+        `;
+
+        const ruleText = 'example.org$$h1:contains(Example):contains(/^(?=.{1,65535}$).*/s)';
+        const rule = createCosmeticRule(ruleText, 0);
+        const selector = new HtmlRuleSelector(rule.getHtmlSelectorList()!);
+
+        const matchedElements = selector.getMatchedElements(document);
+        expect(matchedElements).toHaveLength(1);
+        expect(matchedElements[0].id).toBe('matched');
+
+        // innerHTML of 65536 chars exceeds max of 65535 — must NOT match
+        document.body.innerHTML = `
+        <h1 id="not-matched">Example${'x'.repeat(65529)}</h1>
+        `;
+
+        const notMatchedElements = selector.getMatchedElements(document);
+        expect(notMatchedElements).toHaveLength(0);
+    });
+
+    it('checks special selector :contains() - large regex quantifier equal or larger than 65536', () => {
+        // "Example" is 7 chars; pad to exactly 65536 total innerHTML chars
+        document.body.innerHTML = `
+        <h1 id="matched">Example${'x'.repeat(65529)}</h1>
+        `;
+
+        const ruleText = 'example.org$$h1:contains(Example):contains(/^(?=.{1,65536}$).*/s)';
+        const rule = createCosmeticRule(ruleText, 0);
+        const selector = new HtmlRuleSelector(rule.getHtmlSelectorList()!);
+
+        const matchedElements = selector.getMatchedElements(document);
+        expect(matchedElements).toHaveLength(1);
+        expect(matchedElements[0].id).toBe('matched');
+
+        // Empty element — matchesSpecialSelector returns false when innerHTML is empty
+        document.body.innerHTML = `
+        <h1 id="not-matched"></h1>
+        `;
+
+        const notMatchedElements = selector.getMatchedElements(document);
+        expect(notMatchedElements).toHaveLength(0);
+    });
+
+    it('checks special selector :contains() - real-world large quantifier range (20000-300000)', () => {
+        // "Flags." is 6 chars; pad to 50000 total innerHTML chars (within 20000-300000 range)
+        document.body.innerHTML = `
+        <script id="matched">Flags.${'x'.repeat(70000)}</script>
+        `;
+
+        const ruleText = 'example.org$$script:contains(Flags.):contains(/^(?=.{20000,300000}$).*/s)';
+        const rule = createCosmeticRule(ruleText, 0);
+        const selector = new HtmlRuleSelector(rule.getHtmlSelectorList()!);
+
+        const matchedElements = selector.getMatchedElements(document);
+        expect(matchedElements).toHaveLength(1);
+        expect(matchedElements[0].id).toBe('matched');
+
+        // Too short: 1000 chars total (< 20000 minimum) — must NOT match
+        document.body.innerHTML = `
+        <script id="not-matched-short">Flags.${'x'.repeat(995)}</script>
+        `;
+
+        const notMatchedShort = selector.getMatchedElements(document);
+        expect(notMatchedShort).toHaveLength(0);
+
+        // Too long: 300001 chars total (> 300000 maximum) — must NOT match
+        document.body.innerHTML = `
+        <script id="not-matched-long">Flags.${'x'.repeat(299995)}</script>
+        `;
+
+        const notMatchedLong = selector.getMatchedElements(document);
+        expect(notMatchedLong).toHaveLength(0);
+
+        // In-range length but missing "Flags." — must NOT match
+        document.body.innerHTML = `
+        <script id="not-matched-no-flags">${'x'.repeat(50000)}</script>
+        `;
+
+        const notMatchedNoFlags = selector.getMatchedElements(document);
+        expect(notMatchedNoFlags).toHaveLength(0);
+    });
 });
