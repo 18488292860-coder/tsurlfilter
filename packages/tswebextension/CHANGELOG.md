@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   unloaded when the declarative filtering log is disabled.
 - `RuleSetsLoaderApi` now provides lazy metadata loaders that read from IndexedDB
   on demand instead of eagerly constructing heavy objects at ruleset creation time.
-- Updated tsurlfilter to vX.X.X. <!-- TODO: update version before release -->
+- Updated [@adguard/tsurlfilter] to vX.X.X. <!-- TODO: update version before release -->
 - Updated [@adguard/assistant] to `v4.4.3`.
 
 ### Fixed
@@ -33,6 +33,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [AdguardBrowserExtension#3329]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3329
 [AdguardBrowserExtension#3414]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3414
+
+## [4.0.5] - 2026-03-24
+
+### Changed
+
+- Updated [@adguard/agtree] to `v4.0.3`.
+- Updated [@adguard/tsurlfilter] to `v4.0.4`.
+- Updated [@adguard/scriptlets] to `v2.3.1`.
+
+[4.0.5]: https://github.com/AdguardTeam/tsurlfilter/releases/tag/tswebextension-v4.0.5
 
 ## [4.0.4] - 2026-03-18
 

@@ -20,9 +20,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- `$removeparam` rules not stripping all tracking parameters when multiple rules match the same URL in MV3 [AdguardBrowserExtension#3444].
+- `$removeparam` rules not stripping all tracking parameters
+  when multiple rules match the same URL in MV3 [AdguardBrowserExtension#3444].
 
 [AdguardBrowserExtension#3444]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3444
+
+## [4.0.4] - 2026-03-24
+
+### Changed
+
+- Updated [@adguard/agtree] to `v4.0.3`.
+- Updated [@adguard/scriptlets] to `v2.3.1`.
+
+[4.0.4]: https://github.com/AdguardTeam/tsurlfilter/releases/tag/tsurlfilter-v4.0.4
 
 ## [4.0.3] - 2026-03-18
 
