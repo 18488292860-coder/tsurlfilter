@@ -7,6 +7,15 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
 
+## [4.0.4] - 2026-03-26
+
+### Fixed
+
+- Conversion of HTML filtering rule where `[tag-content]` value contains
+  an escaped double quotes `"`.
+
+[4.0.4]: https://github.com/AdguardTeam/tsurlfilter/releases/tag/agtree-v4.0.4
+
 ## [4.0.3] - 2026-03-24
 
 ### Fixed
