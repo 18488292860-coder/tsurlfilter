@@ -180,6 +180,18 @@ describe('HtmlRuleConverter', () => {
                         actual: '$$div[tag-content="a"][wildcard="*example*"]:contains(b)',
                         expected: ['$$div:contains(a):contains(/^.*example.*$/s):contains(b)'],
                     },
+
+                    // `[tag-content]` with `""` escaped double quotes - simple case
+                    {
+                        actual: '$$div[tag-content="a""b"]',
+                        expected: ['$$div:contains(a"b)'],
+                    },
+
+                    // `[tag-content]` with `""` escaped double quotes - multiple
+                    {
+                        actual: '$$script[tag-content="{""zone_id"":"""]',
+                        expected: ['$$script:contains({"zone_id":")'],
+                    },
                 ])("should convert '$actual' to '$expected'", (testData) => {
                     expect(testData).toBeConvertedProperly(
                         HtmlRuleConverter,
@@ -375,6 +387,18 @@ describe('HtmlRuleConverter', () => {
                         actual: '$$div:contains(example)',
                         expected: ['$$div:contains(example)'],
                         shouldConvert: false,
+                    },
+
+                    // `[tag-content]` with `""` escaped double quotes - simple case
+                    {
+                        actual: '$$div[tag-content="a""b"]',
+                        expected: ['$$div:contains(a"b)'],
+                    },
+
+                    // `[tag-content]` with `""` escaped double quotes - multiple
+                    {
+                        actual: '$$script[tag-content="{""zone_id"":"""]',
+                        expected: ['$$script:contains({"zone_id":")'],
                     },
                 ])("should convert '$actual' to '$expected'", (testData) => {
                     expect(testData).toBeConvertedProperly(HtmlRuleConverter, 'convertToAdg');

@@ -25,6 +25,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [AdguardBrowserExtension#3444]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3444
 
+## [4.0.5] - 2026-03-26
+
+### Changed
+
+- Updated [@adguard/agtree] to `v4.0.4`.
+
+[4.0.5]: https://github.com/AdguardTeam/tsurlfilter/releases/tag/tsurlfilter-v4.0.5
+
 ## [4.0.4] - 2026-03-24
 
 ### Changed

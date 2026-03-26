@@ -15,6 +15,15 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 [#169]: https://github.com/AdguardTeam/tsurlfilter/issues/169
 
+## [4.0.4] - 2026-03-26
+
+### Fixed
+
+- Conversion of HTML filtering rule where `[tag-content]` value contains
+  an escaped double quotes `"`.
+
+[4.0.4]: https://github.com/AdguardTeam/tsurlfilter/releases/tag/agtree-v4.0.4
+
 ## [4.0.3] - 2026-03-24
 
 ### Fixed
