@@ -28,7 +28,7 @@ import { MessageType } from '../../message-constants';
 import { logger } from '../../utils/logger';
 import { sendAppMessage } from '../send-app-message';
 
-import { hasTypeField } from './message-type-guards';
+import { hasTypeField, isAssistantMessage } from './message-type-guards';
 
 interface CustomWindow extends Window {
     isAssistantInitiated: boolean;
@@ -51,6 +51,11 @@ export const createAssistantMessageListener = (): void => {
     }
 
     browser.runtime.onMessage.addListener(async (message): Promise<undefined> => {
+        if (!isAssistantMessage(message)) {
+            // silently ignore messages that are not assistant messages
+            return;
+        }
+
         if (!hasTypeField(message)) {
             logger.warn('[tsweb.assistant-listener]: message do not contain required field "type": ', message);
             return;

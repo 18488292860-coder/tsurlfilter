@@ -24,7 +24,7 @@ import browser from 'webextension-polyfill';
 
 import { MAIN_FRAME_ID } from './constants';
 import { EventChannel } from './utils/channels';
-import { MessageType } from './message-constants';
+import { MESSAGE_HANDLER_NAME, MessageType } from './message-constants';
 import { type FrameCommon } from './tabs/frame';
 import { type TabContextCommon } from './tabs/tab-context';
 
@@ -103,6 +103,7 @@ export abstract class CommonAssistant {
 
         // After injection we can request opening it.
         await browser.tabs.sendMessage(tabId, {
+            handlerName: MESSAGE_HANDLER_NAME,
             type: MessageType.InitAssistant,
         });
     }
@@ -115,6 +116,7 @@ export abstract class CommonAssistant {
      */
     public static async closeAssistant(tabId: number): Promise<void> {
         await browser.tabs.sendMessage(tabId, {
+            handlerName: MESSAGE_HANDLER_NAME,
             type: MessageType.CloseAssistant,
         });
     }
