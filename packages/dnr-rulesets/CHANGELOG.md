@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+
+- Smoke test failure in Docker CI by adding `--ignore-scripts` to
+  `pnpm install` in `test/smoke/exports/test.sh`.
+
 ### Changed
 
 - Updated tsurlfilter to vX.X.X. <!-- TODO: update version before release -->

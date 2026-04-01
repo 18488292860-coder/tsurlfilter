@@ -30,6 +30,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   incorrectly redirect to the document blocking page. Prefetch requests are now detected in
   `webRequest.onBeforeRequest` via `details.documentId` (excluding prerender requests) and are
   silently blocked without showing the blocking page [AdguardBrowserExtension#3414].
+- Smoke test failure in Docker CI by adding `--ignore-scripts` to
+  `pnpm install` in `test/smoke/exports/test.sh` to prevent the root
+  `prepare` script from running (`.husky` is excluded via `.dockerignore`).
 
 [AdguardBrowserExtension#3329]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3329
 [AdguardBrowserExtension#3414]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3414
@@ -1679,7 +1682,7 @@ its setting [AdguardBrowserExtension#2584].
 
 ### Fixed
 
-- Fixed allowlist api rule generation and matching.
+- Allowlist api rule generation and matching.
 
 [0.0.57]: https://github.com/AdguardTeam/tsurlfilter/releases/tag/tswebextension-v0.0.57
 
@@ -1687,12 +1690,12 @@ its setting [AdguardBrowserExtension#2584].
 
 ### Fixed
 
-- Fixed simultaneous increase of package numbers for packages tsurlfilter and
+- Simultaneous increase of package numbers for packages tsurlfilter and
   tswebextension in the branch epic.
-- Fixed working with DNT-headers and GPC from stealth mode.
-- Fixed js and css injection error handling.
-- Fixed request events initialization.
-- Fixed memory leaks in the tests.
+- Working with DNT-headers and GPC from stealth mode.
+- JS and CSS injection error handling.
+- Request events initialization.
+- Memory leaks in the tests.
 
 ### Removed
 
