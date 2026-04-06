@@ -28,6 +28,6 @@ skip_tests() {
   local xml_file="${1:-}"
   if [ -n "$xml_file" ]; then
     mkdir -p "$(dirname "$xml_file")"
-    cp "$(dirname "${BASH_SOURCE[0]}")/skipped-tests.xml" "$xml_file"
+    cp "./bamboo-specs/scripts/skipped-tests.xml" "$xml_file"
   fi
 }
