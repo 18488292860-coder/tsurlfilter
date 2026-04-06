@@ -19,3 +19,15 @@ is_project_affected() {
 
   pnpm list --filter "...[${target_branch}]" --depth=-1 | grep -q "${project_name}"
 }
+
+# Writes a minimal JUnit XML report so that the Bamboo JUnit Parser succeeds
+# even when tests are skipped. Only needed for jobs that have a JUnit parser task.
+# Parameters:
+#   - xml_file: Path to the XML report file to create (e.g. output/tests-reports/css-tokenizer.xml).
+skip_tests() {
+  local xml_file="${1:-}"
+  if [ -n "$xml_file" ]; then
+    mkdir -p "$(dirname "$xml_file")"
+    cp "$(dirname "${BASH_SOURCE[0]}")/skipped-tests.xml" "$xml_file"
+  fi
+}
