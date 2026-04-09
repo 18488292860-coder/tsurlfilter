@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `StealthHelper.hideDocumentReferrer()` now returns `document.location.origin` with a trailing slash to match the real referrer format. [AdguardBrowserExtension#3393].
 - Use of invalid CSS selectors in element hiding rules affects all injected styles [AdguardBrowserExtension#3329].
 - MV3: prefetch requests (via Chrome's Speculation Rules API) matching `$document` rules no longer
   incorrectly redirect to the document blocking page. Prefetch requests are now detected in
@@ -35,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `prepare` script from running (`.husky` is excluded via `.dockerignore`).
 - "Block ads manual" doesn't work on tabs opened before the update [AdguardBrowserExtension#3452].
 
+[AdguardBrowserExtension#3393]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3393
 [AdguardBrowserExtension#3329]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3329
 [AdguardBrowserExtension#3414]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3414
 [AdguardBrowserExtension#3452]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3452
