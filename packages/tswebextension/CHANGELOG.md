@@ -18,7 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   lazy-loaded from IndexedDB on demand and freed immediately after use.
 - Ruleset content (`sourceMap`, `declarativeRules`, `filterList`) is now also
   unloaded when the declarative filtering log is disabled.
-- Enabled alphabetical import sorting via ESLint `sort-imports` and `import/order` rules.
 - `RuleSetsLoaderApi` now provides lazy metadata loaders that read from IndexedDB
   on demand instead of eagerly constructing heavy objects at ruleset creation time.
 - Updated [@adguard/tsurlfilter] to vX.X.X. <!-- TODO: update version before release -->
@@ -26,8 +25,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- `StealthHelper.hideDocumentReferrer()` now returns `document.location.origin` with a trailing slash to match the real referrer format. [AdguardBrowserExtension#3393].
-- Use of invalid CSS selectors in element hiding rules affects all injected styles [AdguardBrowserExtension#3329].
+- `StealthHelper.hideDocumentReferrer()` now returns
+  `document.location.origin` with a trailing slash to match the real
+  referrer format. [AdguardBrowserExtension#3393].
+- Use of invalid CSS selectors in element hiding rules affects all injected styles
+  [AdguardBrowserExtension#3329].
 - MV3: prefetch requests (via Chrome's Speculation Rules API) matching `$document` rules no longer
   incorrectly redirect to the document blocking page. Prefetch requests are now detected in
   `webRequest.onBeforeRequest` via `details.documentId` (excluding prerender requests) and are
@@ -121,7 +123,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Use `filterList.getOriginalContent()` instead of `FilterListPreprocessor.getOriginalFilterListText()`.
 - **BREAKING: Configuration structure changes**:
     - **MV2**: Filters now use `content` and `conversionData` instead of `content` and `sourceMap`.
-    - **MV3**: Custom filters now use `content` and `conversionData` instead of `rawFilterList`, `sourceMap`, and `conversionMap`.
+    - **MV3**: Custom filters now use `content` and `conversionData`
+      instead of `rawFilterList`, `sourceMap`, and `conversionMap`.
 - **BREAKING: Renamed configuration property** `sourceMap` to `conversionData` across all filter configurations.
 - **BREAKING: Renamed property** `conversionMap` to `conversionData` in filter metadata.
 - Moved `rule-info.ts` from `content-script` directory to `common` directory for better reusability.
@@ -138,7 +141,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Network rules with `$important` modifier are applied
   even if protection is disabled [AdguardBrowserExtension#3227].
-- Some requests are blocked in _Inverted allowlist_ mode even though
+- Some requests are blocked in *Inverted allowlist* mode even though
   there're no websites added to the Allowlist [AdguardBrowserExtension#3193].
 - Tracking protection rules are applied after filtering is disabled in MV3.
 - Blocked iframes are not collapsed on Firefox [AdguardBrowserExtension#3116].
@@ -536,7 +539,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remade JS rules injections in MV3:
     - use `chrome.scripting` API for injecting functions for script rules from the pre-built filters,
     - use script tag injection only for script rules manually added by users —
-      rules from _User rules_ and _Custom filters_.
+      rules from *User rules* and *Custom filters*.
 
 [2.4.0-alpha.8]: https://github.com/AdguardTeam/tsurlfilter/releases/tag/tswebextension-v2.4.0-alpha.8
 

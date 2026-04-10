@@ -28,5 +28,8 @@
     },
     "emphasis-style": {
         "style": "asterisk"
+    },
+    "table-column-style": {
+        "style": "aligned"
     }
 }
