@@ -1,16 +1,16 @@
+import { type HTTPMethod, RequestType } from '@adguard/tsurlfilter';
 import browser, { type WebRequest } from 'webextension-polyfill';
-import { RequestType, type HTTPMethod } from '@adguard/tsurlfilter';
 
-import { defaultFilteringLog, FilteringEventType } from '../../../../common/filtering-log';
-import { requestContextStorage, RequestContextState } from '../request-context-storage';
-import { tabsApi, type TabFrameRequestContextMV3 } from '../../../tabs/tabs-api';
-import { getRequestType } from '../../../../common/request-type';
 import { MAIN_FRAME_ID } from '../../../../common/constants';
-import { isHttpRequest, isThirdPartyRequest } from '../../../../common/utils/url';
-import { nanoid } from '../../../../common/utils/nanoid';
+import { defaultFilteringLog, FilteringEventType } from '../../../../common/filtering-log';
 import { DocumentLifecycle } from '../../../../common/interfaces';
+import { getRequestType } from '../../../../common/request-type';
+import { nanoid } from '../../../../common/utils/nanoid';
+import { isHttpRequest, isThirdPartyRequest } from '../../../../common/utils/url';
+import { type TabFrameRequestContextMV3, tabsApi } from '../../../tabs/tabs-api';
+import { RequestContextState, requestContextStorage } from '../request-context-storage';
 
-import { RequestEvent, type RequestData } from './request-event';
+import { type RequestData, RequestEvent } from './request-event';
 
 const MAX_URL_LENGTH = 1024 * 16;
 

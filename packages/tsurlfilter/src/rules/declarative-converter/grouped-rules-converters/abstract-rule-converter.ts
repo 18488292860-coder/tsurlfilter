@@ -97,12 +97,21 @@
 /* eslint-enable jsdoc/require-description-complete-sentence */
 /* eslint-enable jsdoc/no-multi-asterisks */
 
-import punycode from 'punycode/punycode.js';
 import { getRedirectFilename } from '@adguard/scriptlets/redirects';
+import punycode from 'punycode/punycode.js';
 
-import { type NetworkRule, NetworkRuleOption } from '../../network-rule';
+import { getErrorMessage } from '../../../common/error';
+import { CSP_HEADER_NAME } from '../../../modifiers/csp-modifier';
+import { HTTPMethod } from '../../../modifiers/method-modifier';
+import { PERMISSIONS_POLICY_HEADER_NAME } from '../../../modifiers/permissions-modifier';
+import { type RedirectModifier } from '../../../modifiers/redirect-modifier';
+import { type RemoveHeaderModifier } from '../../../modifiers/remove-header-modifier';
 import { type RemoveParamModifier } from '../../../modifiers/remove-param-modifier';
 import { type RequestType } from '../../../request-type';
+import { type NetworkRule, NetworkRuleOption } from '../../network-rule';
+import type { IRule } from '../../rule';
+import { SimpleRegex } from '../../simple-regex';
+import { type ConvertedRules } from '../converted-result';
 import {
     DECLARATIVE_REQUEST_METHOD_MAP,
     DECLARATIVE_RESOURCE_TYPES_MAP,
@@ -126,21 +135,12 @@ import {
     UnsupportedModifierError,
     UnsupportedRegexpError,
 } from '../errors/conversion-errors';
-import { type ConvertedRules } from '../converted-result';
-import type { IRule } from '../../rule';
+import { EmptyDomainsError } from '../errors/conversion-errors/empty-domains-error';
 import { ResourcesPathError } from '../errors/converter-options-errors';
-import { type RedirectModifier } from '../../../modifiers/redirect-modifier';
-import { type RemoveHeaderModifier } from '../../../modifiers/remove-header-modifier';
-import { CSP_HEADER_NAME } from '../../../modifiers/csp-modifier';
-import { HTTPMethod } from '../../../modifiers/method-modifier';
-import { PERMISSIONS_POLICY_HEADER_NAME } from '../../../modifiers/permissions-modifier';
-import { SimpleRegex } from '../../simple-regex';
 import { type IndexedNetworkRuleWithHash } from '../network-indexed-rule-with-hash';
 import { NetworkRuleDeclarativeValidator } from '../network-rule-validator';
-import { EmptyDomainsError } from '../errors/conversion-errors/empty-domains-error';
-import { re2Validator } from '../re2-regexp/re2-validator';
-import { getErrorMessage } from '../../../common/error';
 import { type NetworkRuleWithNodeAndText } from '../network-rule-with-node-and-text';
+import { re2Validator } from '../re2-regexp/re2-validator';
 
 /**
  * Contains the generic logic for converting a {@link NetworkRule}

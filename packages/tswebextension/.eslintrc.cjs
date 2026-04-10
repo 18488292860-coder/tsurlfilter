@@ -62,16 +62,25 @@ module.exports = {
             items: 3,
             'max-len': MAX_LINE_LENGTH,
         }],
+        // Sort members of import statements, e.g. `import { B, A } from 'module';` -> `import { A, B } from 'module';`
+        // Note: imports themselves are sorted by import/order rule
+        'sort-imports': ['error', {
+            ignoreCase: true,
+            // Avoid conflict with import/order rule
+            ignoreDeclarationSort: true,
+            ignoreMemberSort: false,
+            memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+        }],
+        // Split external and internal imports with an empty line
         'import/order': [
             'error',
             {
                 groups: [
-                    'builtin',
-                    'external',
-                    'internal',
+                    ['builtin', 'external'],
                     'parent',
-                    'index',
+                    'sibling',
                 ],
+                alphabetize: { order: 'asc', caseInsensitive: true },
                 'newlines-between': 'always',
             },
         ],

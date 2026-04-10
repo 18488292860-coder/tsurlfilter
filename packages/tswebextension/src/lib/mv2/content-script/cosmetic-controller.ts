@@ -1,9 +1,9 @@
-import { type IAffectedElement, type ExtCssConfiguration, ExtendedCss } from '@adguard/extended-css';
+import { type ExtCssConfiguration, ExtendedCss, type IAffectedElement } from '@adguard/extended-css';
 
 import { CssHitsCounter } from '../../common/content-script/css-hits-counter';
-import { MessageType } from '../../common/message-constants';
 import { sendAppMessage } from '../../common/content-script/send-app-message';
 import { type ContentScriptCosmeticData } from '../../common/cosmetic-api';
+import { MessageType } from '../../common/message-constants';
 import { validateSelectors } from '../../common/utils/selector-validator';
 import { HIDING_STYLE } from '../common/hidden-style';
 

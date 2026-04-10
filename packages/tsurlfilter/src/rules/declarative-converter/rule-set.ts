@@ -1,17 +1,17 @@
 import { z as zod } from 'zod';
 
-import type { NetworkRule } from '../network-rule';
 import { getErrorMessage } from '../../common/error';
-import { serializeJson } from '../../utils/misc';
 import { LazyLoader } from '../../utils/lazy-loader';
+import { serializeJson } from '../../utils/misc';
+import type { NetworkRule } from '../network-rule';
 
-import { IndexedNetworkRuleWithHash } from './network-indexed-rule-with-hash';
 import { type DeclarativeRule, DeclarativeRuleValidator } from './declarative-rule';
-import { type IFilter } from './filter';
 import { UnavailableRuleSetSourceError } from './errors/unavailable-sources-errors/unavailable-rule-set-source-error';
-import { type ISourceMap, SourceMap, type SourceRuleIdxAndFilterId } from './source-map';
-import { type IRulesHashMap } from './rules-hash-map';
+import { type IFilter } from './filter';
 import { createMetadataRule } from './metadata-rule';
+import { IndexedNetworkRuleWithHash } from './network-indexed-rule-with-hash';
+import { type IRulesHashMap } from './rules-hash-map';
+import { type ISourceMap, SourceMap, type SourceRuleIdxAndFilterId } from './source-map';
 
 /**
  * The OriginalSource contains the text of the original rule and the filter

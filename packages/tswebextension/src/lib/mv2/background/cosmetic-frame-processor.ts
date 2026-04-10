@@ -1,15 +1,15 @@
 import { type MatchingResult, type NetworkRule, RequestType } from '@adguard/tsurlfilter';
 
-import { isHttpRequest } from '../../common/utils/url';
 import { LF, MAIN_FRAME_ID } from '../../common/constants';
 import {
-    type PrecalculateCosmeticProps,
+    type HandleMainFrameProps,
     type HandleSubFrameWithoutUrlProps,
     type HandleSubFrameWithUrlProps,
-    type HandleMainFrameProps,
+    type PrecalculateCosmeticProps,
 } from '../../common/cosmetic-frame-processor';
 import { DocumentLifecycle } from '../../common/interfaces';
 import { CssCapabilities } from '../../common/utils/css-capabilities';
+import { isHttpRequest } from '../../common/utils/url';
 
 import { documentApi, stealthApi } from './api';
 import { appContext } from './app-context';

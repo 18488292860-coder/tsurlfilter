@@ -1,3 +1,4 @@
+import { type HTTPMethod } from '@adguard/tsurlfilter';
 import {
     beforeAll,
     beforeEach,
@@ -6,12 +7,11 @@ import {
     it,
     vi,
 } from 'vitest';
-import { type HTTPMethod } from '@adguard/tsurlfilter';
 
 import { defaultFilteringLog, FilteringEventType } from '../../../../src/lib/common/filtering-log';
 import { type ContentType } from '../../../../src/lib/common/request-type';
-import { requestContextStorage } from '../../../../src/lib/mv3/background/request/request-context-storage';
 import { declarativeFilteringLog } from '../../../../src/lib/mv3/background/declarative-filtering-log';
+import { requestContextStorage } from '../../../../src/lib/mv3/background/request/request-context-storage';
 
 // Counter for generating unique nanoid values in tests.
 let nanoidCounter = 0;

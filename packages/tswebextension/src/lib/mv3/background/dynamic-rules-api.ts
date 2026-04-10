@@ -1,7 +1,7 @@
 import {
+    type ConversionResult,
     DeclarativeFilterConverter,
     type IFilter,
-    type ConversionResult,
     type IRuleSet,
     type UpdateStaticRulesOptions,
 } from '@adguard/tsurlfilter/es/declarative-converter';

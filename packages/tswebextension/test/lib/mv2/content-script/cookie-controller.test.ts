@@ -2,18 +2,18 @@
  * @vitest-environment jsdom
  */
 
+import { NetworkRuleOption } from '@adguard/tsurlfilter';
 import {
+    beforeEach,
     describe,
     expect,
-    beforeEach,
     it,
     vi,
 } from 'vitest';
-import { NetworkRuleOption } from '@adguard/tsurlfilter';
 
+import { CookieController } from '../../../../src/lib/common/content-script/cookie-controller';
 import { createNetworkRule } from '../../../helpers/rule-creator';
 import { getNetworkRuleFields } from '../background/helpers/rule-fields';
-import { CookieController } from '../../../../src/lib/common/content-script/cookie-controller';
 
 describe('Cookie Controller Tests', () => {
     const onAppliedCallback = vi.fn(() => {});

@@ -22,10 +22,10 @@
 import browser from 'webextension-polyfill';
 
 import { MAIN_FRAME_ID } from './constants';
-import { EventChannel } from './utils/channels';
 import { MESSAGE_HANDLER_NAME, MessageType } from './message-constants';
 import { type FrameCommon } from './tabs/frame';
 import { type TabContextCommon } from './tabs/tab-context';
+import { EventChannel } from './utils/channels';
 
 /**
  * Data needed to determine whether the frame is an assistant frame.

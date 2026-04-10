@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
-import { type Runtime } from 'webextension-polyfill';
 import { NetworkRuleOption } from '@adguard/tsurlfilter';
+import { type Runtime } from 'webextension-polyfill';
 
 import { MAIN_FRAME_ID } from '../../common/constants';
 import { type CookieRule } from '../../common/content-script/cookie-controller';
@@ -22,7 +22,7 @@ import { nanoid } from '../../common/utils/nanoid';
 import { getRuleTextsByIndex } from '../../common/utils/rule-text-provider';
 import { getDomain } from '../../common/utils/url';
 
-import { engineApi, cookieFiltering } from './api';
+import { cookieFiltering, engineApi } from './api';
 import { Assistant } from './assistant';
 import { CosmeticApi } from './cosmetic-api';
 import { RequestBlockingApi } from './request';

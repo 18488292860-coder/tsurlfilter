@@ -1,18 +1,18 @@
 import {
+    afterEach,
+    beforeEach,
     describe,
     expect,
-    beforeEach,
-    afterEach,
     it,
     vi,
 } from 'vitest';
 
-import { CosmeticFrameProcessor } from '../../../../src/lib/mv3/background/cosmetic-frame-processor';
-import { DocumentLifecycle } from '../../../../src/lib/common/interfaces';
 import { MAIN_FRAME_ID } from '../../../../src/lib/common/constants';
-import { tabsApi } from '../../../../src/lib/mv3/tabs/tabs-api';
+import { DocumentLifecycle } from '../../../../src/lib/common/interfaces';
+import { CosmeticFrameProcessor } from '../../../../src/lib/mv3/background/cosmetic-frame-processor';
 import { DocumentApi } from '../../../../src/lib/mv3/background/document-api';
 import { engineApi } from '../../../../src/lib/mv3/background/engine-api';
+import { tabsApi } from '../../../../src/lib/mv3/tabs/tabs-api';
 
 vi.mock('../../../../src/lib/mv3/tabs/tabs-api', () => ({
     tabsApi: {

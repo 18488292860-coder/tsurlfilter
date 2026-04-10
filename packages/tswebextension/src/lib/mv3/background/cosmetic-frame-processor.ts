@@ -1,21 +1,21 @@
 import { type CosmeticResult, type CosmeticRule, RequestType } from '@adguard/tsurlfilter';
 
-import { isHttpRequest } from '../../common/utils/url';
 import { MAIN_FRAME_ID } from '../../common/constants';
-import { DocumentLifecycle } from '../../common/interfaces';
 import {
-    type PrecalculateCosmeticProps,
+    type HandleMainFrameProps,
     type HandleSubFrameWithoutUrlProps,
     type HandleSubFrameWithUrlProps,
-    type HandleMainFrameProps,
+    type PrecalculateCosmeticProps,
 } from '../../common/cosmetic-frame-processor';
+import { DocumentLifecycle } from '../../common/interfaces';
+import { isHttpRequest } from '../../common/utils/url';
+import { type FrameMV3, type PreparedCosmeticResultMV3 } from '../tabs/frame';
 import { tabsApi } from '../tabs/tabs-api';
-import { type PreparedCosmeticResultMV3, type FrameMV3 } from '../tabs/frame';
 
 import { appContext } from './app-context';
+import { CosmeticApi } from './cosmetic-api';
 import { DocumentApi } from './document-api';
 import { engineApi } from './engine-api';
-import { CosmeticApi } from './cosmetic-api';
 import { UserScriptsApi } from './user-scripts-api';
 
 /**

@@ -1,19 +1,19 @@
+import { HTTPMethod } from '@adguard/tsurlfilter';
 import browser from 'sinon-chrome';
 import {
     describe,
-    it,
     expect,
+    it,
     vi,
 } from 'vitest';
 import { type WebRequest } from 'webextension-polyfill';
-import { HTTPMethod } from '@adguard/tsurlfilter';
 
-import {
-    RequestEvents,
-    type OnBeforeRequestDetailsType,
-} from '../../../../../../src/lib/mv3/background/request/events/request-events';
-import { DocumentLifecycle } from '../../../../../../src/lib/common/interfaces';
 import { defaultFilteringLog, FilteringEventType } from '../../../../../../src/lib/common/filtering-log';
+import { DocumentLifecycle } from '../../../../../../src/lib/common/interfaces';
+import {
+    type OnBeforeRequestDetailsType,
+    RequestEvents,
+} from '../../../../../../src/lib/mv3/background/request/events/request-events';
 
 describe('Request Events', () => {
     const commonRequestData: OnBeforeRequestDetailsType = {

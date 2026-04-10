@@ -1,14 +1,14 @@
+import { type NetworkRule, NetworkRuleOption, RequestType } from '@adguard/tsurlfilter';
 import browser, { type WebRequest } from 'webextension-polyfill';
-import { RequestType, NetworkRuleOption, type NetworkRule } from '@adguard/tsurlfilter';
 
 import { companiesDbService } from '../../../common/companies-db-service';
 import { defaultFilteringLog, FilteringEventType } from '../../../common/filtering-log';
 import { getRuleTexts } from '../../../common/utils/rule-text-provider';
 import {
-    tabsApi,
+    documentBlockingService,
     engineApi,
     redirectsService,
-    documentBlockingService,
+    tabsApi,
 } from '../api';
 import { RuleUtils } from '../utils/rule-utils';
 

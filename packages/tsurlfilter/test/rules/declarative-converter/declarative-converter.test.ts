@@ -1,21 +1,21 @@
 import { describe, expect, it } from 'vitest';
 
-import { DeclarativeFilterConverter } from '../../../src/rules/declarative-converter/filter-converter';
+import { ResourceType, RuleActionType } from '../../../src/rules/declarative-converter/declarative-rule';
+import { UnsupportedModifierError } from '../../../src/rules/declarative-converter/errors/conversion-errors';
 import {
-    MaxScannedRulesError,
-    TooManyRulesError,
-    TooManyUnsafeRulesError,
-} from '../../../src/rules/declarative-converter/errors/limitation-errors';
+    EmptyDomainsError,
+} from '../../../src/rules/declarative-converter/errors/conversion-errors/empty-domains-error';
 import {
     EmptyOrNegativeNumberOfRulesError,
     NegativeNumberOfRulesError,
     ResourcesPathError,
 } from '../../../src/rules/declarative-converter/errors/converter-options-errors';
-import { UnsupportedModifierError } from '../../../src/rules/declarative-converter/errors/conversion-errors';
-import { ResourceType, RuleActionType } from '../../../src/rules/declarative-converter/declarative-rule';
 import {
-    EmptyDomainsError,
-} from '../../../src/rules/declarative-converter/errors/conversion-errors/empty-domains-error';
+    MaxScannedRulesError,
+    TooManyRulesError,
+    TooManyUnsafeRulesError,
+} from '../../../src/rules/declarative-converter/errors/limitation-errors';
+import { DeclarativeFilterConverter } from '../../../src/rules/declarative-converter/filter-converter';
 import { re2Validator } from '../../../src/rules/declarative-converter/re2-regexp/re2-validator';
 import { regexValidatorNode } from '../../../src/rules/declarative-converter/re2-regexp/regex-validator-node';
 import { createNetworkRule } from '../../helpers/rule-creator';

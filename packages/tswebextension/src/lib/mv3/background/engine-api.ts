@@ -1,22 +1,22 @@
 import {
-    Engine,
-    RequestType,
-    Request,
-    CosmeticResult,
-    type CosmeticOption,
-    type NetworkRule,
-    type MatchingResult,
-    type HTTPMethod,
-    setConfiguration,
     CompatibilityTypes,
+    type CosmeticOption,
+    CosmeticResult,
+    Engine,
     type EngineFactoryFilterList,
+    type HTTPMethod,
+    type MatchingResult,
+    type NetworkRule,
+    Request,
+    RequestType,
+    setConfiguration,
 } from '@adguard/tsurlfilter';
+import { type IFilter, UnavailableFilterSourceError } from '@adguard/tsurlfilter/es/declarative-converter';
 import browser from 'webextension-polyfill';
-import { UnavailableFilterSourceError, type IFilter } from '@adguard/tsurlfilter/es/declarative-converter';
 
 import { ALLOWLIST_FILTER_ID, USER_FILTER_ID } from '../../common/constants';
 import { logger } from '../../common/utils/logger';
-import { isHttpOrWsRequest, isHttpRequest, getHost } from '../../common/utils/url';
+import { getHost, isHttpOrWsRequest, isHttpRequest } from '../../common/utils/url';
 
 import { type ConfigurationMV3 } from './configuration';
 import { UserScriptsApi } from './user-scripts-api';

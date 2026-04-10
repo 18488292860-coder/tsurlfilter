@@ -1,12 +1,12 @@
+import { HTTPMethod, RequestType } from '@adguard/tsurlfilter';
+import browser from 'sinon-chrome';
 import {
     describe,
     expect,
     test,
     vi,
 } from 'vitest';
-import browser from 'sinon-chrome';
 import { type WebRequest } from 'webextension-polyfill';
-import { HTTPMethod, RequestType } from '@adguard/tsurlfilter';
 
 import { type RequestContext, RequestContextState, RequestEvents } from '../../../../../../src/lib';
 import { ContentType } from '../../../../../../src/lib/common/request-type';

@@ -1,8 +1,8 @@
 import { type WebRequest } from 'webextension-polyfill';
 
 import {
-    type GetDocumentBlockingResponseParams,
     DocumentBlockingServiceCommon,
+    type GetDocumentBlockingResponseParams,
 } from '../../../common/document-blocking-service';
 import { logger } from '../../../common/utils/logger';
 import { type TabsApi, tabsApi } from '../../tabs/tabs-api';

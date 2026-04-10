@@ -1,21 +1,21 @@
+import { type NetworkRule } from '@adguard/tsurlfilter';
+import browser from 'sinon-chrome';
 import {
+    afterEach,
+    beforeEach,
     describe,
     expect,
-    beforeEach,
-    afterEach,
     it,
     vi,
 } from 'vitest';
-import browser from 'sinon-chrome';
-import { type NetworkRule } from '@adguard/tsurlfilter';
 
-import { TabsApi } from '../../../../src/lib/mv3/tabs/tabs-api';
-import { TabContext } from '../../../../src/lib/mv3/tabs/tab-context';
-import { FrameMV3 } from '../../../../src/lib/mv3/tabs/frame';
-import { engineApi } from '../../../../src/lib/mv3/background/engine-api';
 import { MAIN_FRAME_ID, NO_PARENT_FRAME_ID } from '../../../../src/lib/common/constants';
 import { Frames } from '../../../../src/lib/common/tabs/frames';
 import { type TabInfo } from '../../../../src/lib/common/tabs/tabs-api';
+import { engineApi } from '../../../../src/lib/mv3/background/engine-api';
+import { FrameMV3 } from '../../../../src/lib/mv3/tabs/frame';
+import { TabContext } from '../../../../src/lib/mv3/tabs/tab-context';
+import { TabsApi } from '../../../../src/lib/mv3/tabs/tabs-api';
 
 vi.mock('../../../../src/lib/mv3/tabs/tab-context');
 vi.mock('../../../../src/lib/mv3/tabs/frame');

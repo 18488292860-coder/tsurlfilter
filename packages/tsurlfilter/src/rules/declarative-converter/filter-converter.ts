@@ -97,9 +97,20 @@
 /* eslint-enable jsdoc/require-description-complete-sentence */
 
 import { getErrorMessage } from '../../common/error';
-import type { NetworkRule } from '../network-rule';
 import { isSafeRule } from '../declarative-converter-utils/is-safe-dnr-rule';
+import type { NetworkRule } from '../network-rule';
 
+import type { ConversionResult } from './conversion-result';
+import { type ConvertedRules } from './converted-result';
+import type { DeclarativeConverterOptions } from './declarative-converter-options';
+import {
+    EmptyOrNegativeNumberOfRulesError,
+    NegativeNumberOfRulesError,
+    ResourcesPathError,
+} from './errors/converter-options-errors';
+import type { IFilter } from './filter';
+import { type IndexedNetworkRuleWithHash } from './network-indexed-rule-with-hash';
+import { NetworkRulesScanner, type ScannedFilter } from './network-rules-scanner';
 import {
     type IRuleSet,
     RuleSet,
@@ -108,20 +119,9 @@ import {
     type SourceRuleAndFilterId,
     type UpdateStaticRulesOptions,
 } from './rule-set';
-import { SourceMap, type SourceRuleIdxAndFilterId } from './source-map';
-import type { IFilter } from './filter';
 import { DeclarativeRulesConverter } from './rules-converter';
-import {
-    EmptyOrNegativeNumberOfRulesError,
-    NegativeNumberOfRulesError,
-    ResourcesPathError,
-} from './errors/converter-options-errors';
-import type { ConversionResult } from './conversion-result';
-import type { DeclarativeConverterOptions } from './declarative-converter-options';
 import { RulesHashMap } from './rules-hash-map';
-import { type IndexedNetworkRuleWithHash } from './network-indexed-rule-with-hash';
-import { type ConvertedRules } from './converted-result';
-import { NetworkRulesScanner, type ScannedFilter } from './network-rules-scanner';
+import { SourceMap, type SourceRuleIdxAndFilterId } from './source-map';
 
 /**
  * The interface for the declarative filter converter describes what the filter

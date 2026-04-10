@@ -1,16 +1,16 @@
-import browser from 'webextension-polyfill';
+import { LogLevel } from '@adguard/logger';
+import { FilterList } from '@adguard/tsurlfilter';
 import {
     Filter,
-    METADATA_RULESET_ID,
-    RULESET_NAME_PREFIX,
     type IFilter,
     type IRuleSet,
+    METADATA_RULESET_ID,
+    RULESET_NAME_PREFIX,
 } from '@adguard/tsurlfilter/es/declarative-converter';
-import { FilterList } from '@adguard/tsurlfilter';
-import { LogLevel } from '@adguard/logger';
 import { getRuleSetId } from '@adguard/tsurlfilter/es/declarative-converter-utils';
+import browser from 'webextension-polyfill';
 
-import { type MessageHandler, type AppInterface } from '../../common/app';
+import { type AppInterface, type MessageHandler } from '../../common/app';
 import { ALLOWLIST_FILTER_ID, BLOCKING_TRUSTED_FILTER_ID, USER_FILTER_ID } from '../../common/constants';
 import { defaultFilteringLog } from '../../common/filtering-log';
 import { logger, stringifyObjectWithoutKeys } from '../../common/utils/logger';
@@ -20,6 +20,7 @@ import { TabsCosmeticInjector } from '../tabs/tabs-cosmetic-injector';
 
 import { AllowlistApi, allowlistApi } from './allowlist-api';
 import { appContext } from './app-context';
+import { assistant, Assistant } from './assistant';
 import { type ConfigurationMV3, type ConfigurationMV3Context, configurationMV3Validator } from './configuration';
 import { declarativeFilteringLog } from './declarative-filtering-log';
 import DynamicRulesApi, { type ConversionResult } from './dynamic-rules-api';
@@ -29,13 +30,12 @@ import FiltersApi, { type LoadFilterContent, type UpdateStaticFiltersResult } fr
 import { MessagesApi } from './messages-api';
 import { RequestEvents } from './request/events/request-events';
 import { RuleSetsLoaderApi } from './rule-sets-loader-api';
+import { CspService } from './services/csp-service';
 import { documentBlockingService } from './services/document-blocking-service';
 import { type LocalScriptFunctionData, localScriptRulesService } from './services/local-script-rules-service';
 import { type StealthConfigurationResult, StealthService } from './services/stealth-service';
-import { WebRequestApi } from './web-request-api';
-import { assistant, Assistant } from './assistant';
 import { SessionRulesApi } from './session-rules-api';
-import { CspService } from './services/csp-service';
+import { WebRequestApi } from './web-request-api';
 
 type ConfigurationResult = {
     staticFiltersStatus: UpdateStaticFiltersResult;

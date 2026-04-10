@@ -1,8 +1,8 @@
 // Import directly from files to avoid side effects of tree shaking.
 // If import from '../../common', entire tsurlfilter will be in the package.
-import { MessageType } from '../../common/message-constants';
-import { sendAppMessage } from '../../common/content-script/send-app-message';
 import { CookieController, type CookieRule } from '../../common/content-script/cookie-controller';
+import { sendAppMessage } from '../../common/content-script/send-app-message';
+import { MessageType } from '../../common/message-constants';
 
 import { CosmeticController } from './cosmetic-controller';
 

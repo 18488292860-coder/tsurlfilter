@@ -1,9 +1,10 @@
-import fs from 'fs';
 import { convertFilters } from '@adguard/tsurlfilter/cli';
 import { getFilterName } from '@adguard/tswebextension/mv3/utils';
 import axios from 'axios';
-import path from 'path';
+import fs from 'fs';
 import { ensureDir } from 'fs-extra';
+import path from 'path';
+
 import { DEFAULT_EXTENSION_CONFIG } from './constants';
 
 const COMMON_FILTERS_DIR = './extension/filters';

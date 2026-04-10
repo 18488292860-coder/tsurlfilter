@@ -1,17 +1,19 @@
 /* eslint-disable no-console */
-import browser from 'webextension-polyfill';
 import {
     AdguardApi,
     type Configuration,
     MESSAGE_HANDLER_NAME,
     type RequestBlockingEvent,
 } from '@adguard/api-mv3';
+import browser from 'webextension-polyfill';
 
 // Import pre-built local script rules (copied during build)
 // @ts-expect-error Importing local script rules from js file without declaration file
-import { localScriptRules as localScriptRulesJs } from '../filters/local_script_rules';
-import { extraScripts } from './extra-scripts';
 import { ENABLED_FILTERS_IDS } from '../../constants';
+// eslint-disable-next-line import/extensions -- file is generated during build
+import { localScriptRules as localScriptRulesJs } from '../filters/local_script_rules';
+
+import { extraScripts } from './extra-scripts';
 
 (async (): Promise<void> => {
     // create new AdguardApi instance with local script rules

@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import { FilterList } from '@adguard/tsurlfilter';
+import { describe, expect, it } from 'vitest';
 
 import { IdbSingleton } from '../../../../src/lib/common/idb-singleton';
 import { FiltersStorage } from '../../../../src/lib/common/storage/filters';

@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
-import path from 'path';
-import { fileURLToPath } from 'node:url';
-
 import { copy } from 'fs-extra';
+import { fileURLToPath } from 'node:url';
+import path from 'path';
 
 const REDIRECTS_CONFIG_PATH = 'redirects.yml';
 const REDIRECTS_RESOURCES_SRC_PATH = 'redirect-files';

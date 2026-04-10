@@ -1,16 +1,16 @@
 import {
+    afterEach,
+    beforeEach,
     describe,
     expect,
-    beforeEach,
-    afterEach,
     it,
     vi,
 } from 'vitest';
 
-import { DocumentLifecycle } from '../../../../src/lib/common/interfaces';
 import { MAIN_FRAME_ID } from '../../../../src/lib/common/constants';
-import { CosmeticFrameProcessor } from '../../../../src/lib/mv2/background/cosmetic-frame-processor';
+import { DocumentLifecycle } from '../../../../src/lib/common/interfaces';
 import { documentApi } from '../../../../src/lib/mv2/background/api';
+import { CosmeticFrameProcessor } from '../../../../src/lib/mv2/background/cosmetic-frame-processor';
 
 vi.mock('../../../../src/lib/mv2/background/api', () => ({
     documentApi: {

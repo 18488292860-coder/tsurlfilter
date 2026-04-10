@@ -1,13 +1,13 @@
-import { type WebRequest } from 'webextension-polyfill';
 import { getHostname } from 'tldts';
+import { type WebRequest } from 'webextension-polyfill';
 
 import {
-    type GetDocumentBlockingResponseParams,
     DocumentBlockingServiceCommon,
+    type GetDocumentBlockingResponseParams,
 } from '../../../common/document-blocking-service';
 import { type ConfigurationMV2 } from '../configuration';
-import { type TabsApi } from '../tabs/tabs-api';
 import { type EngineApi } from '../engine-api';
+import { type TabsApi } from '../tabs/tabs-api';
 import { browserDetectorMV2 } from '../utils/browser-detector';
 
 /**

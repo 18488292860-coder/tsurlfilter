@@ -1,5 +1,5 @@
+import { type NetworkRule, NetworkRuleOption, StealthOptionName } from '@adguard/tsurlfilter';
 import { RequestType } from '@adguard/tsurlfilter/es/request-type';
-import { NetworkRuleOption, StealthOptionName, type NetworkRule } from '@adguard/tsurlfilter';
 import { type WebRequest } from 'webextension-polyfill';
 
 import { type StealthConfig } from '../../../common/configuration';
@@ -10,8 +10,8 @@ import { logger } from '../../../common/utils/logger';
 import { getDomain } from '../../../common/utils/url';
 import { appContext } from '../app-context';
 import { type SettingsConfigMV3 } from '../configuration';
-import { requestContextStorage, type RequestContext } from '../request';
-import { SessionRulesApi, SessionRuleId } from '../session-rules-api';
+import { type RequestContext, requestContextStorage } from '../request';
+import { SessionRuleId, SessionRulesApi } from '../session-rules-api';
 
 import { searchEngineDomains } from './searchEngineDomains';
 

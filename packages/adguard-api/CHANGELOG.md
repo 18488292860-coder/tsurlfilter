@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+
+- Enabled alphabetical import sorting via ESLint `sort-imports` and `import/order` rules.
+
 ### Removed
 
 - Removed unused `src/local_script_rules.json` (~3.3 MB). The file was never

@@ -1,18 +1,18 @@
-import browser, { type WebRequest } from 'webextension-polyfill';
-import { RequestType } from '@adguard/tsurlfilter/es/request-type';
 import { type HTTPMethod } from '@adguard/tsurlfilter';
+import { RequestType } from '@adguard/tsurlfilter/es/request-type';
+import browser, { type WebRequest } from 'webextension-polyfill';
 
 import { MAIN_FRAME_ID } from '../../../../common/constants';
+import { splitMultilineCookies } from '../../../../common/cookie-filtering/utils';
 import { defaultFilteringLog, FilteringEventType } from '../../../../common/filtering-log';
+import { DocumentLifecycle } from '../../../../common/interfaces';
 import { getRequestType } from '../../../../common/request-type';
 import { isHttpRequest, isThirdPartyRequest } from '../../../../common/utils/url';
 import { type TabFrameRequestContextMV2, type TabsApi } from '../../tabs/tabs-api';
-import { requestContextStorage, RequestContextState } from '../request-context-storage';
-import { DocumentLifecycle } from '../../../../common/interfaces';
 import { browserDetectorMV2 } from '../../utils/browser-detector';
-import { splitMultilineCookies } from '../../../../common/cookie-filtering/utils';
+import { RequestContextState, requestContextStorage } from '../request-context-storage';
 
-import { RequestEvent, type RequestData } from './request-event';
+import { type RequestData, RequestEvent } from './request-event';
 
 const MAX_URL_LENGTH = 1024 * 16;
 

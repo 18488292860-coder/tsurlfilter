@@ -29,6 +29,28 @@ module.exports = {
         'max-len': ['error', { code: 120, ignoreUrls: true }],
         'import-newlines/enforce': ['error', 3, 120],
         'import/prefer-default-export': 'off',
+        // Sort members of import statements, e.g. `import { B, A } from 'module';` -> `import { A, B } from 'module';`
+        // Note: imports themselves are sorted by import/order rule
+        'sort-imports': ['error', {
+            ignoreCase: true,
+            // Avoid conflict with import/order rule
+            ignoreDeclarationSort: true,
+            ignoreMemberSort: false,
+            memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+        }],
+        // Split external and internal imports with an empty line
+        'import/order': [
+            'error',
+            {
+                groups: [
+                    ['builtin', 'external'],
+                    'parent',
+                    'sibling',
+                ],
+                alphabetize: { order: 'asc', caseInsensitive: true },
+                'newlines-between': 'always',
+            },
+        ],
         'jsdoc/require-param-type': 'off',
         'jsdoc/require-returns-type': 'off',
         'jsdoc/no-undefined-types': 'off',

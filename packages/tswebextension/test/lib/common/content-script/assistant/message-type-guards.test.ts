@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { MESSAGE_HANDLER_NAME, MessageType } from '../../../../../src/lib/common/message-constants';
 import {
     hasTypeField,
     isAssistantMessage,
 } from '../../../../../src/lib/common/content-script/assistant/message-type-guards';
+import { MESSAGE_HANDLER_NAME, MessageType } from '../../../../../src/lib/common/message-constants';
 
 describe('Message type guards', () => {
     describe('hasTypeField', () => {

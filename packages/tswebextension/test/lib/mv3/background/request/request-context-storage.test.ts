@@ -1,10 +1,10 @@
+import { RequestType } from '@adguard/tsurlfilter';
 import {
+    beforeEach,
     describe,
     expect,
-    beforeEach,
     test,
 } from 'vitest';
-import { RequestType } from '@adguard/tsurlfilter';
 
 import {
     type RequestContext,

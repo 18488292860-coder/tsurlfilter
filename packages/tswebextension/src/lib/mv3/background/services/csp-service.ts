@@ -1,15 +1,15 @@
+import { CSP_HEADER_NAME, NetworkRuleOption, RequestType } from '@adguard/tsurlfilter';
 import { getDomain } from 'tldts';
-import { NetworkRuleOption, CSP_HEADER_NAME, RequestType } from '@adguard/tsurlfilter';
 
 import { defaultFilteringLog, FilteringEventType } from '../../../common/filtering-log';
 import { ContentType } from '../../../common/request-type';
 import { nanoid } from '../../../common/utils/nanoid';
 import { getRuleTexts } from '../../../common/utils/rule-text-provider';
+import { tabsApi } from '../../tabs/tabs-api';
 import { engineApi } from '../engine-api';
 import { RequestBlockingApi } from '../request/request-blocking-api';
 import { type RequestContext, requestContextStorage } from '../request/request-context-storage';
 import { SessionRuleId, SessionRulesApi } from '../session-rules-api';
-import { tabsApi } from '../../tabs/tabs-api';
 
 /**
  * Content Security Policy Headers filtering service module.

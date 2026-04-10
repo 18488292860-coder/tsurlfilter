@@ -1,6 +1,6 @@
-import path from 'node:path';
-import { type ConfigurationMV2 } from '@adguard/tswebextension';
 import { FilterList } from '@adguard/tsurlfilter';
+import { type ConfigurationMV2 } from '@adguard/tswebextension';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention

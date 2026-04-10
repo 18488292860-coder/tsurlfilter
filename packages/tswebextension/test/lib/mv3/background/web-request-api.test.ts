@@ -1,3 +1,4 @@
+import { HTTPMethod, RequestType } from '@adguard/tsurlfilter';
 import {
     beforeEach,
     describe,
@@ -5,14 +6,13 @@ import {
     it,
     vi,
 } from 'vitest';
-import { HTTPMethod, RequestType } from '@adguard/tsurlfilter';
 
-import { ContentType } from '../../../../src/lib/common/request-type';
-import { DocumentLifecycle } from '../../../../src/lib/common/interfaces';
 import { defaultFilteringLog } from '../../../../src/lib/common/filtering-log';
-import { WebRequestApi } from '../../../../src/lib/mv3/background/web-request-api';
-import { documentBlockingService } from '../../../../src/lib/mv3/background/services/document-blocking-service';
+import { DocumentLifecycle } from '../../../../src/lib/common/interfaces';
+import { ContentType } from '../../../../src/lib/common/request-type';
 import { requestContextStorage } from '../../../../src/lib/mv3/background/request/request-context-storage';
+import { documentBlockingService } from '../../../../src/lib/mv3/background/services/document-blocking-service';
+import { WebRequestApi } from '../../../../src/lib/mv3/background/web-request-api';
 
 vi.mock('../../../../src/lib/common/filtering-log', () => ({
     defaultFilteringLog: {

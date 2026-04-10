@@ -1,18 +1,18 @@
 import {
+    afterEach,
+    beforeEach,
     describe,
     expect,
-    beforeEach,
-    afterEach,
     it,
     vi,
 } from 'vitest';
 
 import { defaultFilteringLog } from '../../../../../src/lib/common/filtering-log';
-import { createNetworkRule } from '../../../../helpers/rule-creator';
+import { type ConfigurationMV3 } from '../../../../../src/lib/mv3/background/configuration';
+import { engineApi } from '../../../../../src/lib/mv3/background/engine-api';
 import { DocumentBlockingService } from '../../../../../src/lib/mv3/background/services/document-blocking-service';
 import { tabsApi } from '../../../../../src/lib/mv3/tabs/tabs-api';
-import { engineApi } from '../../../../../src/lib/mv3/background/engine-api';
-import { type ConfigurationMV3 } from '../../../../../src/lib/mv3/background/configuration';
+import { createNetworkRule } from '../../../../helpers/rule-creator';
 
 vi.mock('../../../../../src/lib/mv3/tabs/tabs-api', () => ({
     tabsApi: {

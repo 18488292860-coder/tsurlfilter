@@ -1,6 +1,6 @@
 import {
-    type HtmlSelectorList,
     type HtmlSelector,
+    type HtmlSelectorList,
     type HtmlSpecialSelector,
     HtmlSpecialSelectorName,
 } from '@adguard/tsurlfilter';

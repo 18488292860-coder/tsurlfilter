@@ -1,8 +1,8 @@
-import { describe, expect, test } from 'vitest';
 import { CosmeticResult } from '@adguard/tsurlfilter';
+import { describe, expect, test } from 'vitest';
 
-import { createCosmeticRule } from '../../helpers/rule-creator';
 import { CosmeticApiCommon } from '../../../src/lib/common/cosmetic-api';
+import { createCosmeticRule } from '../../helpers/rule-creator';
 
 /**
  * Creates cosmetic result for elemhide rules.

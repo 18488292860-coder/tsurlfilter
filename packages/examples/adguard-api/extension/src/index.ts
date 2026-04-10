@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-import browser from 'webextension-polyfill';
 import {
     AdguardApi,
     type Configuration,
-    type RequestBlockingEvent,
     MESSAGE_HANDLER_NAME,
+    type RequestBlockingEvent,
 } from '@adguard/api';
+import browser from 'webextension-polyfill';
 
 (async (): Promise<void> => {
     // create new AdguardApi instance

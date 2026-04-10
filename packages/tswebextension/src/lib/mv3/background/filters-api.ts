@@ -1,10 +1,10 @@
-import zod from 'zod';
+import { FilterList } from '@adguard/tsurlfilter';
 import { Filter, type IFilter, RULESET_NAME_PREFIX } from '@adguard/tsurlfilter/es/declarative-converter';
 import browser from 'webextension-polyfill';
-import { FilterList } from '@adguard/tsurlfilter';
+import zod from 'zod';
 
-import { FailedEnableRuleSetsError } from '../errors/failed-enable-rule-sets-error';
 import { FiltersStorage } from '../../common/storage/filters';
+import { FailedEnableRuleSetsError } from '../errors/failed-enable-rule-sets-error';
 
 import { type ConfigurationMV3 } from './configuration';
 

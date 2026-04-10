@@ -16,13 +16,14 @@
  * along with Adguard API. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { getDomain, isHttpRequest } from '@adguard/tswebextension';
 import browser, { Tabs } from 'webextension-polyfill';
-import { isHttpRequest, getDomain } from '@adguard/tswebextension';
 
-import { UserAgent } from '../utils';
-import { Configuration } from '../schemas';
-import { FiltersApi } from './api';
 import { notifier, NotifierEventType } from '../notifier';
+import { Configuration } from '../schemas';
+import { UserAgent } from '../utils';
+
+import { FiltersApi } from './api';
 
 export type BrowsingLanguage = {
     language: string;

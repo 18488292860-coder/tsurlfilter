@@ -1,8 +1,8 @@
+import { type HTTPMethod, type MatchingResult } from '@adguard/tsurlfilter';
 import { type WebRequest } from 'webextension-polyfill';
-import { type MatchingResult, type HTTPMethod } from '@adguard/tsurlfilter';
 
-import { type ContentType } from '../../../common/request-type';
 import { type ParsedCookie } from '../../../common/cookie-filtering/parsed-cookie';
+import { type ContentType } from '../../../common/request-type';
 import { type TabFrameRequestContextMV3 } from '../../tabs/tabs-api';
 
 export const enum RequestContextState {

@@ -4,15 +4,16 @@
  * e.g.  "[ext.page-handler]:" or "[tsweb.WebRequestApi.onBeforeRequest]:".
  */
 
+import { LogMethod } from '@adguard/logger';
 import { ESLintUtils, TSESTree } from '@typescript-eslint/utils';
 import type { RuleContext } from '@typescript-eslint/utils/ts-eslint';
 import path from 'path';
-import { LogMethod } from '@adguard/logger';
+
 import {
-    getEnclosingNames,
     buildTag,
-    startsWithTag,
     createFix,
+    getEnclosingNames,
+    startsWithTag,
 } from './helpers';
 
 const DEFAULT_CONTEXT_MODULE_NAME = 'logger';

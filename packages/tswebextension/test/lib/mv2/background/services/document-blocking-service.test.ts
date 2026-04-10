@@ -1,17 +1,17 @@
 import {
+    afterEach,
+    beforeEach,
     describe,
     expect,
-    beforeEach,
-    afterEach,
     it,
     vi,
 } from 'vitest';
 
-import { createNetworkRule } from '../../../../helpers/rule-creator';
-import { getConfigurationMv2Fixture } from '../fixtures/configuration';
-import { DocumentBlockingService } from '../../../../../src/lib/mv2/background/services/document-blocking-service';
 import { engineApi, tabsApi } from '../../../../../src/lib/mv2/background/api';
 import { type ConfigurationMV2 } from '../../../../../src/lib/mv2/background/configuration';
+import { DocumentBlockingService } from '../../../../../src/lib/mv2/background/services/document-blocking-service';
+import { createNetworkRule } from '../../../../helpers/rule-creator';
+import { getConfigurationMv2Fixture } from '../fixtures/configuration';
 
 vi.mock('../../../../../src/lib/mv2/background/api');
 

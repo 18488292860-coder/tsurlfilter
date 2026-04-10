@@ -1,15 +1,15 @@
+import { RequestType } from '@adguard/tsurlfilter';
 import {
+    beforeEach,
     describe,
     expect,
-    beforeEach,
     it,
     vi,
 } from 'vitest';
-import { RequestType } from '@adguard/tsurlfilter';
 
+import { defaultFilteringLog } from '../../../../../src/lib/common/filtering-log';
 import { CspService } from '../../../../../src/lib/mv3/background/services/csp-service';
 import { SessionRuleId, SessionRulesApi } from '../../../../../src/lib/mv3/background/session-rules-api';
-import { defaultFilteringLog } from '../../../../../src/lib/common/filtering-log';
 import { tabsApi } from '../../../../../src/lib/mv3/tabs/tabs-api';
 
 vi.mock('../../../../../src/lib/common/filtering-log', () => ({

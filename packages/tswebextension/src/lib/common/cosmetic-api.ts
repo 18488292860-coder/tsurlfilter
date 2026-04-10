@@ -5,9 +5,9 @@ import { LF, SEMICOLON } from './constants';
 import { defaultFilteringLog, FilteringEventType } from './filtering-log';
 import { type ContentType } from './request-type';
 import { CssCapabilities } from './utils/css-capabilities';
-import { getDomain } from './utils/url';
 import { nanoid } from './utils/nanoid';
 import { getRuleTexts, type RuleTextProvider } from './utils/rule-text-provider';
+import { getDomain } from './utils/url';
 
 /**
  * Information for logging js rules.

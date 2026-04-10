@@ -9,9 +9,9 @@ import { CSP_HEADER_NAME } from '../../../src/modifiers/csp-modifier';
 import { PERMISSIONS_POLICY_HEADER_NAME } from '../../../src/modifiers/permissions-modifier';
 import { ResourceType } from '../../../src/rules/declarative-converter/declarative-rule';
 import { type InvalidDeclarativeRuleError } from '../../../src/rules/declarative-converter/errors/conversion-errors';
-import { DeclarativeRulesConverter } from '../../../src/rules/declarative-converter/rules-converter';
 import { re2Validator } from '../../../src/rules/declarative-converter/re2-regexp/re2-validator';
 import { regexValidatorNode } from '../../../src/rules/declarative-converter/re2-regexp/regex-validator-node';
+import { DeclarativeRulesConverter } from '../../../src/rules/declarative-converter/rules-converter';
 import { createNetworkRuleWithNode } from '../../helpers/rule-creator';
 
 import { createScannedFilter } from './helpers';

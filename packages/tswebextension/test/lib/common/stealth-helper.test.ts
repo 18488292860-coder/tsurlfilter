@@ -1,7 +1,7 @@
 import {
+    afterEach,
     describe,
     expect,
-    afterEach,
     it,
 } from 'vitest';
 

@@ -1,5 +1,5 @@
+import { type NetworkRule, type RequestType } from '@adguard/tsurlfilter';
 import browser, { type Tabs } from 'webextension-polyfill';
-import { type RequestType, type NetworkRule } from '@adguard/tsurlfilter';
 
 import { type DocumentApi } from '../../mv2/background/document-api';
 import { MAIN_FRAME_ID, NO_PARENT_FRAME_ID } from '../constants';

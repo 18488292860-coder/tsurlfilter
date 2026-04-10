@@ -1,6 +1,6 @@
-import browser, { type Tabs } from 'webextension-polyfill';
-import { identity } from 'lodash-es';
 import { type NetworkRule } from '@adguard/tsurlfilter';
+import { identity } from 'lodash-es';
+import browser, { type Tabs } from 'webextension-polyfill';
 
 import { MAIN_FRAME_ID } from '../constants';
 import { defaultFilteringLog, type FilteringLog } from '../filtering-log';

@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import TextEncoding from '@adguard/text-encoding';
+import { describe, expect, it } from 'vitest';
 
 const { TextEncoder, TextDecoder } = TextEncoding;
 

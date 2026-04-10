@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   lazy-loaded from IndexedDB on demand and freed immediately after use.
 - Ruleset content (`sourceMap`, `declarativeRules`, `filterList`) is now also
   unloaded when the declarative filtering log is disabled.
+- Enabled alphabetical import sorting via ESLint `sort-imports` and `import/order` rules.
 - `RuleSetsLoaderApi` now provides lazy metadata loaders that read from IndexedDB
   on demand instead of eagerly constructing heavy objects at ruleset creation time.
 - Updated [@adguard/tsurlfilter] to vX.X.X. <!-- TODO: update version before release -->
