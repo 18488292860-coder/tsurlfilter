@@ -56,6 +56,8 @@ export class CspService {
             thirdParty,
             tabId,
             referrerUrl,
+            parentDocumentId,
+            frameAncestors,
         } = context;
 
         if (requestType !== RequestType.CspReport) {
@@ -72,7 +74,12 @@ export class CspService {
                 },
             });
 
-            tabsApi.incrementTabBlockedRequestCount(tabId, referrerUrl);
+            tabsApi.incrementTabBlockedRequestCount({
+                tabId,
+                referrerUrl,
+                parentDocumentId,
+                frameAncestors,
+            });
         }
     }
 

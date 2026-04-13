@@ -25,7 +25,9 @@ type RequestParams = Pick<
     'requestId' |
     'requestUrl' |
     'requestType' |
-    'contentType'
+    'contentType' |
+    'parentDocumentId' |
+    'frameAncestors'
 >;
 
 /**
@@ -147,6 +149,8 @@ export class RequestBlockingApi {
             requestId,
             referrerUrl,
             isPrerenderRequest,
+            parentDocumentId,
+            frameAncestors,
         } = data;
 
         if (!rule) {
@@ -170,7 +174,12 @@ export class RequestBlockingApi {
                 // redirects should be considered as blocked for the tab blocked request count
                 // which is displayed on the extension badge
                 // https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2443
-                tabsApi.incrementTabBlockedRequestCount(tabId, referrerUrl);
+                tabsApi.incrementTabBlockedRequestCount({
+                    tabId,
+                    referrerUrl,
+                    parentDocumentId,
+                    frameAncestors,
+                });
                 return { redirectUrl };
             }
         }

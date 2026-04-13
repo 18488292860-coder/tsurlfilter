@@ -30,6 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   referrer format. [AdguardBrowserExtension#3393].
 - Use of invalid CSS selectors in element hiding rules affects all injected styles
   [AdguardBrowserExtension#3329].
+- Blocked requests in cross-domain iframes were not counted in the extension badge
+  [AdguardBrowserExtension#3446].
 - MV3: prefetch requests (via Chrome's Speculation Rules API) matching `$document` rules no longer
   incorrectly redirect to the document blocking page. Prefetch requests are now detected in
   `webRequest.onBeforeRequest` via `details.documentId` (excluding prerender requests) and are
@@ -42,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [AdguardBrowserExtension#3393]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3393
 [AdguardBrowserExtension#3329]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3329
 [AdguardBrowserExtension#3414]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3414
+[AdguardBrowserExtension#3446]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3446
 [AdguardBrowserExtension#3452]: https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3452
 
 ## [4.0.6] - 2026-03-26

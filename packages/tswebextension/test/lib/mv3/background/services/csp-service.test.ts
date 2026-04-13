@@ -80,6 +80,7 @@ describe('CspService', () => {
             const context = {
                 eventId: 'test-event-id',
                 tabId: 1,
+                frameId: 0,
                 requestType: RequestType.CspReport,
                 thirdParty: true,
                 referrerUrl: 'https://example.com',
@@ -96,7 +97,12 @@ describe('CspService', () => {
                 },
             });
 
-            expect(vi.mocked(tabsApi.incrementTabBlockedRequestCount)).toHaveBeenCalledWith(1, 'https://example.com');
+            expect(vi.mocked(tabsApi.incrementTabBlockedRequestCount)).toHaveBeenCalledWith({
+                tabId: 1,
+                referrerUrl: 'https://example.com',
+                parentDocumentId: undefined,
+                frameAncestors: undefined,
+            });
         });
 
         it('should not log for first-party CSP reports', () => {

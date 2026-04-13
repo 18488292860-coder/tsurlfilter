@@ -338,12 +338,13 @@ export class WebRequestApi {
             thirdParty,
             method,
             requestFrameId,
+            parentDocumentId,
+            frameAncestors,
         } = context;
 
         const {
             parentFrameId,
             documentId,
-            parentDocumentId,
             documentLifecycle,
         } = details;
 
@@ -474,6 +475,8 @@ export class WebRequestApi {
             contentType,
             tabId,
             isPrerenderRequest,
+            parentDocumentId,
+            frameAncestors,
         });
 
         if (!response) {
@@ -491,7 +494,12 @@ export class WebRequestApi {
         }
 
         if (response?.cancel) {
-            tabsApi.incrementTabBlockedRequestCount(tabId, referrerUrl);
+            tabsApi.incrementTabBlockedRequestCount({
+                tabId,
+                referrerUrl,
+                parentDocumentId,
+                frameAncestors,
+            });
 
             const mainFrameUrl = tabsApi.getTabMainFrame(tabId)?.url;
 
@@ -611,6 +619,8 @@ export class WebRequestApi {
             requestFrameId,
             thirdParty,
             tabId,
+            parentDocumentId,
+            frameAncestors,
         } = context;
 
         const headerResult = matchingResult.getResponseHeadersResult(responseHeaders);
@@ -627,7 +637,12 @@ export class WebRequestApi {
         });
 
         if (response?.cancel) {
-            tabsApi.incrementTabBlockedRequestCount(tabId, referrerUrl);
+            tabsApi.incrementTabBlockedRequestCount({
+                tabId,
+                referrerUrl,
+                parentDocumentId,
+                frameAncestors,
+            });
 
             const mainFrameUrl = tabsApi.getTabMainFrame(tabId)?.url;
 
@@ -992,6 +1007,8 @@ export class WebRequestApi {
             eventId,
             referrerUrl,
             thirdParty,
+            parentDocumentId,
+            frameAncestors,
         } = context;
 
         /**
@@ -1020,7 +1037,12 @@ export class WebRequestApi {
                 },
             });
 
-            tabsApi.incrementTabBlockedRequestCount(tabId, referrerUrl);
+            tabsApi.incrementTabBlockedRequestCount({
+                tabId,
+                referrerUrl,
+                parentDocumentId,
+                frameAncestors,
+            });
 
             return { cancel: true };
         }

@@ -162,11 +162,11 @@ export class CosmeticFrameProcessor {
             frameId,
         } = props;
 
+        this.tabsApi.resetBlockedRequestsCount(tabId);
+
         if (!isHttpRequest(url)) {
             return;
         }
-
-        this.tabsApi.resetBlockedRequestsCount(tabId);
 
         const mainFrameRule = documentApi.matchFrame(url);
 
@@ -259,6 +259,7 @@ export class CosmeticFrameProcessor {
             url,
             parentDocumentId,
             documentLifecycle,
+            isPrefetchRequest,
         } = props;
 
         // Prerender main frame request can have other that 0 id.
@@ -267,9 +268,10 @@ export class CosmeticFrameProcessor {
 
         const isPrerenderRequest = documentLifecycle === DocumentLifecycle.Prerender;
 
-        // Don't process prerender requests further, because they will be
-        // handled again when the document becomes active.
-        if (isMainFrame && isPrerenderRequest) {
+        // Don't process prerender or prefetch requests
+        // further, because they should not reset the blocked counter or
+        // trigger cosmetic recalculation for the current page.
+        if (isMainFrame && (isPrerenderRequest || isPrefetchRequest)) {
             return;
         }
 

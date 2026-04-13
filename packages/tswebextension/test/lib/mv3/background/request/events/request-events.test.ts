@@ -163,5 +163,95 @@ describe('Request Events', () => {
 
             filteringLogSpy.mockRestore();
         });
+
+        it('should NOT publish TabReload for prefetch document requests', () => {
+            const filteringLogSpy = vi.spyOn(defaultFilteringLog, 'publishEvent');
+
+            const prefetchRequestDetails: OnBeforeRequestDetailsType = {
+                ...commonRequestData,
+                requestId: 'prefetch-tab-reload-1',
+                documentLifecycle: DocumentLifecycle.Active,
+                documentId: 'some-doc-id',
+                timeStamp: Date.now(),
+            };
+
+            browser.webRequest.onBeforeRequest.dispatch(prefetchRequestDetails);
+
+            const tabReloadCalls = filteringLogSpy.mock.calls.filter(
+                (call: unknown[]) => (call[0] as { type?: string })?.type === FilteringEventType.TabReload,
+            );
+            expect(tabReloadCalls).toHaveLength(0);
+
+            filteringLogSpy.mockRestore();
+        });
+    });
+
+    describe('prefetch request detection', () => {
+        it('should set isPrefetchRequest=true for document request with documentId and active lifecycle', () => {
+            RequestEvents.init();
+            const listener = vi.fn();
+            RequestEvents.onBeforeRequest.addListener(listener);
+
+            const details: OnBeforeRequestDetailsType = {
+                ...commonRequestData,
+                requestId: 'prefetch-detect-1',
+                documentLifecycle: DocumentLifecycle.Active,
+                documentId: 'some-doc-id',
+                timeStamp: Date.now(),
+            };
+
+            browser.webRequest.onBeforeRequest.dispatch(details);
+
+            expect(listener).toHaveBeenCalledWith(expect.objectContaining({
+                context: expect.objectContaining({
+                    isPrefetchRequest: true,
+                }),
+            }));
+        });
+
+        it('should set isPrefetchRequest=false for document request without documentId', () => {
+            RequestEvents.init();
+            const listener = vi.fn();
+            RequestEvents.onBeforeRequest.addListener(listener);
+
+            const details: OnBeforeRequestDetailsType = {
+                ...commonRequestData,
+                requestId: 'no-docid-detect-1',
+                documentLifecycle: DocumentLifecycle.Active,
+                // no documentId
+                timeStamp: Date.now(),
+            };
+
+            browser.webRequest.onBeforeRequest.dispatch(details);
+
+            expect(listener).toHaveBeenCalledWith(expect.objectContaining({
+                context: expect.objectContaining({
+                    isPrefetchRequest: false,
+                }),
+            }));
+        });
+
+        it('should set isPrefetchRequest=false for prerender request even with documentId', () => {
+            RequestEvents.init();
+            const listener = vi.fn();
+            RequestEvents.onBeforeRequest.addListener(listener);
+
+            const details: OnBeforeRequestDetailsType = {
+                ...commonRequestData,
+                requestId: 'prerender-detect-1',
+                documentLifecycle: DocumentLifecycle.Prerender,
+                documentId: 'some-doc-id',
+                originUrl: undefined,
+                timeStamp: Date.now(),
+            };
+
+            browser.webRequest.onBeforeRequest.dispatch(details);
+
+            expect(listener).toHaveBeenCalledWith(expect.objectContaining({
+                context: expect.objectContaining({
+                    isPrefetchRequest: false,
+                }),
+            }));
+        });
     });
 });

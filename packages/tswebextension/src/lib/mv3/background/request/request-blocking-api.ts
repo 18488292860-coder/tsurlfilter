@@ -189,6 +189,8 @@ export class RequestBlockingApi {
             responseHeaders,
             tabId,
             referrerUrl,
+            parentDocumentId,
+            frameAncestors,
         } = context;
 
         if (!matchingResult || !responseHeaders) {
@@ -199,7 +201,12 @@ export class RequestBlockingApi {
 
         if (rule) {
             RequestBlockingApi.logRuleApplying(context, rule);
-            tabsApi.incrementTabBlockedRequestCount(tabId, referrerUrl);
+            tabsApi.incrementTabBlockedRequestCount({
+                tabId,
+                referrerUrl,
+                parentDocumentId,
+                frameAncestors,
+            });
         }
     }
 

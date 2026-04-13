@@ -187,4 +187,94 @@ describe('CosmeticFrameProcessor', () => {
             expect(vi.mocked(engineApi.matchRequest)).toHaveBeenCalled();
         });
     });
+
+    describe('handleFrame resets blocked count for non-HTTP pages', () => {
+        it('should reset blocked request count for non-HTTP main frame URLs (e.g. chrome://newtab)', () => {
+            CosmeticFrameProcessor.handleFrame({
+                tabId: 1,
+                frameId: MAIN_FRAME_ID,
+                parentFrameId: -1,
+                url: 'chrome://newtab/',
+                timeStamp: Date.now(),
+            });
+
+            expect(vi.mocked(tabsApi.resetBlockedRequestsCount)).toHaveBeenCalledWith(1);
+            // Should not proceed with matching since it's not an HTTP request
+            expect(vi.mocked(engineApi.matchRequest)).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('handleFrame with prefetch requests', () => {
+        it('should NOT process main frame for prefetch requests', () => {
+            CosmeticFrameProcessor.handleFrame({
+                tabId: 1,
+                frameId: MAIN_FRAME_ID,
+                parentFrameId: -1,
+                url: 'https://prefetch-target.com/',
+                timeStamp: Date.now(),
+                documentLifecycle: DocumentLifecycle.Active,
+                isPrefetchRequest: true,
+            });
+
+            // For prefetch requests, should NOT call any of these methods
+            expect(vi.mocked(tabsApi.resetBlockedRequestsCount)).not.toHaveBeenCalled();
+            expect(vi.mocked(tabsApi.setMainFrameRule)).not.toHaveBeenCalled();
+            expect(vi.mocked(engineApi.matchRequest)).not.toHaveBeenCalled();
+            expect(vi.mocked(tabsApi.updateFrameContext)).not.toHaveBeenCalled();
+        });
+
+        it('should process main frame when isPrefetchRequest is false', () => {
+            vi.mocked(DocumentApi.matchFrame).mockReturnValue(null);
+            vi.mocked(engineApi.matchRequest).mockReturnValue({
+                getCosmeticOption: vi.fn().mockReturnValue(0),
+            } as any);
+            vi.mocked(engineApi.getCosmeticResult).mockReturnValue({
+                elementHiding: { generic: [], specific: [] },
+                CSS: { generic: [], specific: [] },
+                getScriptRules: vi.fn().mockReturnValue([]),
+            } as any);
+
+            CosmeticFrameProcessor.handleFrame({
+                tabId: 1,
+                frameId: MAIN_FRAME_ID,
+                parentFrameId: -1,
+                url: 'https://example.com/',
+                timeStamp: Date.now(),
+                documentLifecycle: DocumentLifecycle.Active,
+                isPrefetchRequest: false,
+            });
+
+            expect(vi.mocked(tabsApi.resetBlockedRequestsCount)).toHaveBeenCalledWith(1);
+            expect(vi.mocked(tabsApi.setMainFrameRule)).toHaveBeenCalled();
+            expect(vi.mocked(engineApi.matchRequest)).toHaveBeenCalled();
+        });
+
+        it('should not apply isPrefetchRequest guard to sub-frames', () => {
+            vi.mocked(tabsApi.getFrameContext).mockReturnValue({
+                frameRule: null,
+                url: 'https://example.com/',
+            } as any);
+            vi.mocked(engineApi.matchRequest).mockReturnValue({
+                getCosmeticOption: vi.fn().mockReturnValue(0),
+            } as any);
+            vi.mocked(engineApi.getCosmeticResult).mockReturnValue({
+                elementHiding: { generic: [], specific: [] },
+                CSS: { generic: [], specific: [] },
+                getScriptRules: vi.fn().mockReturnValue([]),
+            } as any);
+
+            CosmeticFrameProcessor.handleFrame({
+                tabId: 1,
+                frameId: 1, // sub-frame
+                parentFrameId: MAIN_FRAME_ID,
+                url: 'https://sub.example.com/',
+                timeStamp: Date.now(),
+                isPrefetchRequest: true,
+            });
+
+            // The prefetch early-return only applies to main frames,
+            // so sub-frames should be processed regardless of the flag.
+            expect(vi.mocked(engineApi.matchRequest)).toHaveBeenCalled();
+        });
+    });
 });

@@ -5,7 +5,7 @@ import browser, { type WebRequest } from 'webextension-polyfill';
 import { MAIN_FRAME_ID } from '../../../../common/constants';
 import { splitMultilineCookies } from '../../../../common/cookie-filtering/utils';
 import { defaultFilteringLog, FilteringEventType } from '../../../../common/filtering-log';
-import { DocumentLifecycle } from '../../../../common/interfaces';
+import { DocumentLifecycle, type FrameAncestor } from '../../../../common/interfaces';
 import { getRequestType } from '../../../../common/request-type';
 import { isHttpRequest, isThirdPartyRequest } from '../../../../common/utils/url';
 import { type TabFrameRequestContextMV2, type TabsApi } from '../../tabs/tabs-api';
@@ -44,6 +44,18 @@ export type OnBeforeRequestDetailsType = WebRequest.OnBeforeRequestDetailsType &
      * @see https://developer.chrome.com/docs/extensions/reference/api/extensionTypes#type-DocumentLifecycle
      */
     documentLifecycle?: DocumentLifecycle;
+
+    /**
+     * Contains information for each document in the frame hierarchy up to the top-level document.
+     * The first element in the array contains information about the immediate parent of the document being requested,
+     * and the last element contains information about the top-level document.
+     * If the load is actually for the top-level document, then this array is empty.
+     *
+     * Available in Firefox only.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/onBeforeRequest#frameancestors
+     */
+    frameAncestors?: FrameAncestor[];
 };
 
 /**
@@ -198,6 +210,8 @@ export class RequestEvents {
             method,
             timeStamp,
             documentLifecycle,
+            parentDocumentId,
+            frameAncestors,
         } = details;
 
         let { url, frameId } = details;
@@ -235,23 +249,38 @@ export class RequestEvents {
             requestFrameId = 0;
         }
 
-        // To mark requests started via navigation from the address bar (real
-        // request or pre-render, it does not matter) as first-party requests,
-        // we get only part of the request context to record only the tab and
-        // frame information before calculating the request referrer.
+        /*
+         * To mark requests started via navigation from the address bar (real
+         * request or pre-render, it does not matter) as first-party requests,
+         * we get only part of the request context to record only the tab and
+         * frame information before calculating the request referrer.
+         */
+
+        // Prefetch requests are main frame requests that have a `documentId` set,
+        // while normal main frame requests do not have a `documentId` set.
+        const isPrefetchRequest = isDocumentRequest
+            && !isPrerenderRequest
+            && !!details.documentId;
+
         const tabFrameRequestContext: TabFrameRequestContextMV2 = {
             requestUrl: url,
             requestType,
             requestId,
             frameId,
             tabId,
+            parentDocumentId,
+            frameAncestors,
+            isPrefetchRequest,
         };
 
-        // Do not reload filtering log on requests that are being redirected by $removeparam
-        // and do not reload for prerender requests
+        // Do not publish TabReload (filtering log reset) for:
+        // - $removeparam redirects (requestContextStorage already has the request);
+        // - prerender requests (not the final displayed document);
+        // - prefetch requests (belongs to a future navigation, page is not displayed yet).
         if (isDocumentRequest
             && !requestContextStorage.has(requestId)
-            && !isPrerenderRequest) {
+            && !isPrerenderRequest
+            && !isPrefetchRequest) {
             // dispatch filtering log reload event
             defaultFilteringLog.publishEvent({
                 type: FilteringEventType.TabReload,

@@ -48,11 +48,6 @@ export type RequestContext = TabFrameRequestContextMV3 & {
      */
     matchingResult?: MatchingResult | null;
 
-    /**
-     * Indicates that the request is a speculative prefetch request detected in
-     * Chromium MV3 via `details.documentId` in `webRequest.onBeforeRequest`.
-     */
-    isPrefetchRequest?: boolean;
 };
 
 /**

@@ -10,9 +10,13 @@ import {
 import { defaultFilteringLog } from '../../../../src/lib/common/filtering-log';
 import { DocumentLifecycle } from '../../../../src/lib/common/interfaces';
 import { ContentType } from '../../../../src/lib/common/request-type';
+import { CosmeticFrameProcessor } from '../../../../src/lib/mv3/background/cosmetic-frame-processor';
+import { engineApi } from '../../../../src/lib/mv3/background/engine-api';
+import { RequestBlockingApi } from '../../../../src/lib/mv3/background/request/request-blocking-api';
 import { requestContextStorage } from '../../../../src/lib/mv3/background/request/request-context-storage';
 import { documentBlockingService } from '../../../../src/lib/mv3/background/services/document-blocking-service';
 import { WebRequestApi } from '../../../../src/lib/mv3/background/web-request-api';
+import { tabsApi } from '../../../../src/lib/mv3/tabs/tabs-api';
 
 vi.mock('../../../../src/lib/common/filtering-log', () => ({
     defaultFilteringLog: {
@@ -104,6 +108,7 @@ describe('WebRequestApi MV3 prefetch handling', () => {
         contentType: ContentType;
         timestamp: number;
         thirdParty: boolean;
+        isPrefetchRequest: boolean;
     } => ({
         requestType: RequestType.Document,
         requestUrl: 'https://example.com/',
@@ -116,14 +121,16 @@ describe('WebRequestApi MV3 prefetch handling', () => {
         contentType: ContentType.Document,
         timestamp: 123,
         thirdParty: false,
+        isPrefetchRequest: false,
     });
 
     beforeEach(() => {
         vi.clearAllMocks();
     });
 
-    it('marks document requests with documentId as prefetch requests', () => {
+    it('passes isPrefetchRequest to precalculateCosmetics for prefetch main-frame requests', () => {
         const context = createBeforeRequestContext();
+        context.isPrefetchRequest = true;
 
         (WebRequestApi as any).onBeforeRequest({
             context,
@@ -134,12 +141,11 @@ describe('WebRequestApi MV3 prefetch handling', () => {
             },
         });
 
-        expect(vi.mocked(requestContextStorage.update)).toHaveBeenCalledWith('request-id', {
-            isPrefetchRequest: true,
-        });
+        // isPrefetchRequest is already set in context by request-events layer
+        expect(context.isPrefetchRequest).toBe(true);
     });
 
-    it('does not mark prerender document requests with documentId as prefetch requests', () => {
+    it('marks context with isPrefetchRequest=false for prerender requests with documentId', () => {
         const context = createBeforeRequestContext();
 
         (WebRequestApi as any).onBeforeRequest({
@@ -151,12 +157,10 @@ describe('WebRequestApi MV3 prefetch handling', () => {
             },
         });
 
-        expect(vi.mocked(requestContextStorage.update)).toHaveBeenCalledWith('request-id', {
-            isPrefetchRequest: false,
-        });
+        expect(context.isPrefetchRequest).toBe(false);
     });
 
-    it('does not mark document requests without documentId as prefetch requests', () => {
+    it('marks context with isPrefetchRequest=false for requests without documentId', () => {
         const context = createBeforeRequestContext();
 
         (WebRequestApi as any).onBeforeRequest({
@@ -167,9 +171,7 @@ describe('WebRequestApi MV3 prefetch handling', () => {
             },
         });
 
-        expect(vi.mocked(requestContextStorage.update)).toHaveBeenCalledWith('request-id', {
-            isPrefetchRequest: false,
-        });
+        expect(context.isPrefetchRequest).toBe(false);
     });
 
     it('propagates isPrefetchRequest to document blocking on blocked main-frame requests', () => {
@@ -217,5 +219,57 @@ describe('WebRequestApi MV3 prefetch handling', () => {
             isPrerenderRequest: false,
             isPrefetchRequest: true,
         });
+    });
+
+    it('passes isPrefetchRequest to precalculateCosmetics when shouldSkipRecalculation is false', () => {
+        vi.mocked(CosmeticFrameProcessor.shouldSkipRecalculation).mockReturnValueOnce(false);
+        vi.mocked(engineApi.matchRequest).mockReturnValueOnce({
+            getBasicResult: vi.fn(() => null),
+            getPopupRule: vi.fn(() => null),
+        } as any);
+
+        const context = createBeforeRequestContext();
+        context.isPrefetchRequest = true;
+
+        (WebRequestApi as any).onBeforeRequest({
+            context,
+            details: {
+                parentFrameId: -1,
+                documentLifecycle: DocumentLifecycle.Active,
+                documentId: 'document-id',
+                parentDocumentId: undefined,
+            },
+        });
+
+        expect(vi.mocked(CosmeticFrameProcessor.precalculateCosmetics)).toHaveBeenCalledWith(
+            expect.objectContaining({
+                isPrefetchRequest: true,
+            }),
+        );
+    });
+
+    it('calls incrementTabBlockedRequestCount when blocking response is cancel', () => {
+        vi.mocked(CosmeticFrameProcessor.shouldSkipRecalculation).mockReturnValueOnce(true);
+        vi.mocked(engineApi.matchRequest).mockReturnValueOnce({
+            getBasicResult: vi.fn(() => ({})),
+            getPopupRule: vi.fn(() => null),
+        } as any);
+        vi.mocked(RequestBlockingApi.getBlockingResponse).mockReturnValueOnce({ cancel: true });
+
+        const context = createBeforeRequestContext();
+
+        (WebRequestApi as any).onBeforeRequest({
+            context,
+            details: {
+                parentFrameId: -1,
+                documentLifecycle: DocumentLifecycle.Active,
+            },
+        });
+
+        expect(vi.mocked(tabsApi.incrementTabBlockedRequestCount)).toHaveBeenCalledWith(
+            expect.objectContaining({
+                tabId: 1,
+            }),
+        );
     });
 });

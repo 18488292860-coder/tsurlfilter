@@ -185,4 +185,93 @@ describe('CosmeticFrameProcessor', () => {
             expect(mockEngineApi.matchRequest).toHaveBeenCalled();
         });
     });
+
+    describe('handleFrame resets blocked count for non-HTTP pages', () => {
+        it('should reset blocked request count for non-HTTP main frame URLs (e.g. chrome://newtab)', () => {
+            cosmeticFrameProcessor.handleFrame({
+                tabId: 1,
+                frameId: MAIN_FRAME_ID,
+                parentFrameId: -1,
+                url: 'chrome://newtab/',
+                timeStamp: Date.now(),
+            });
+
+            expect(mockTabsApi.resetBlockedRequestsCount).toHaveBeenCalledWith(1);
+            // Should not proceed with matching since it's not an HTTP request
+            expect(mockEngineApi.matchRequest).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('handleFrame with prefetch requests', () => {
+        it('should NOT process main frame for prefetch requests', () => {
+            cosmeticFrameProcessor.handleFrame({
+                tabId: 1,
+                frameId: MAIN_FRAME_ID,
+                parentFrameId: -1,
+                url: 'https://prefetch-target.com/',
+                timeStamp: Date.now(),
+                documentLifecycle: DocumentLifecycle.Active,
+                isPrefetchRequest: true,
+            });
+
+            // For prefetch requests, should NOT call any of these methods
+            expect(mockTabsApi.resetBlockedRequestsCount).not.toHaveBeenCalled();
+            expect(mockTabsApi.setMainFrameRule).not.toHaveBeenCalled();
+            expect(mockEngineApi.matchRequest).not.toHaveBeenCalled();
+            expect(mockTabsApi.updateFrameContext).not.toHaveBeenCalled();
+        });
+
+        it('should process main frame when isPrefetchRequest is false', () => {
+            mockEngineApi.matchRequest.mockReturnValue({
+                getCosmeticOption: vi.fn().mockReturnValue(0),
+            });
+            mockEngineApi.getCosmeticResult.mockReturnValue({
+                elementHiding: { generic: [], specific: [] },
+                CSS: { generic: [], specific: [] },
+                getScriptRules: vi.fn().mockReturnValue([]),
+            });
+
+            cosmeticFrameProcessor.handleFrame({
+                tabId: 1,
+                frameId: MAIN_FRAME_ID,
+                parentFrameId: -1,
+                url: 'https://example.com/',
+                timeStamp: Date.now(),
+                documentLifecycle: DocumentLifecycle.Active,
+                isPrefetchRequest: false,
+            });
+
+            expect(mockTabsApi.resetBlockedRequestsCount).toHaveBeenCalledWith(1);
+            expect(mockTabsApi.setMainFrameRule).toHaveBeenCalled();
+            expect(mockEngineApi.matchRequest).toHaveBeenCalled();
+        });
+
+        it('should not apply isPrefetchRequest guard to sub-frames', () => {
+            mockTabsApi.getFrameContext.mockReturnValue({
+                frameRule: null,
+                url: 'https://example.com/',
+            });
+            mockEngineApi.matchRequest.mockReturnValue({
+                getCosmeticOption: vi.fn().mockReturnValue(0),
+            });
+            mockEngineApi.getCosmeticResult.mockReturnValue({
+                elementHiding: { generic: [], specific: [] },
+                CSS: { generic: [], specific: [] },
+                getScriptRules: vi.fn().mockReturnValue([]),
+            });
+
+            cosmeticFrameProcessor.handleFrame({
+                tabId: 1,
+                frameId: 1, // sub-frame
+                parentFrameId: MAIN_FRAME_ID,
+                url: 'https://sub.example.com/',
+                timeStamp: Date.now(),
+                isPrefetchRequest: true,
+            });
+
+            // The prefetch early-return only applies to main frames,
+            // so sub-frames should be processed regardless of the flag.
+            expect(mockEngineApi.matchRequest).toHaveBeenCalled();
+        });
+    });
 });

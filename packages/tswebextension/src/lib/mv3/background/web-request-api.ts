@@ -265,12 +265,14 @@ export class WebRequestApi {
             contentType,
             timestamp,
             thirdParty,
+            parentDocumentId,
+            frameAncestors,
+            isPrefetchRequest,
         } = context;
 
         const {
             parentFrameId,
             documentLifecycle,
-            documentId,
         } = details;
 
         const isDocumentRequest = requestType === RequestType.Document;
@@ -287,12 +289,6 @@ export class WebRequestApi {
          */
         if (isDocumentRequest) {
             tabsApi.createTabContextIfNotExists(tabId, requestUrl);
-
-            const isDocumentPrerenderRequest = documentLifecycle === DocumentLifecycle.Prerender;
-            // Prefetch requests are main frame requests that have a `documentId` set,
-            // while normal main frame requests do not have a `documentId` set.
-            const isPrefetchRequest = !isDocumentPrerenderRequest && !!documentId;
-            requestContextStorage.update(requestId, { isPrefetchRequest });
         }
 
         const isDocumentOrSubDocumentRequest = isDocumentRequest || requestType === RequestType.SubDocument;
@@ -391,6 +387,7 @@ export class WebRequestApi {
                 url: requestUrl,
                 timeStamp: timestamp,
                 documentLifecycle,
+                isPrefetchRequest,
             });
         }
 
@@ -410,7 +407,12 @@ export class WebRequestApi {
         // which is displayed on the extension badge
         // https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2443
         if (response?.cancel || response?.redirectUrl !== undefined) {
-            tabsApi.incrementTabBlockedRequestCount(tabId, referrerUrl);
+            tabsApi.incrementTabBlockedRequestCount({
+                tabId,
+                referrerUrl,
+                parentDocumentId,
+                frameAncestors,
+            });
         }
     }
 

@@ -53,6 +53,11 @@ export type PrecalculateCosmeticProps = {
      * @see https://developer.chrome.com/docs/extensions/reference/api/extensionTypes#type-DocumentLifecycle.
      */
     documentLifecycle?: `${DocumentLifecycle}`;
+
+    /**
+     * Whether this is a prefetch request (Chrome's Speculation Rules API).
+     */
+    isPrefetchRequest?: boolean;
 };
 
 /**
