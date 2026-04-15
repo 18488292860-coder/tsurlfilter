@@ -18,12 +18,9 @@ The list of available filters can be found by `filters` in the metadata of:
         - [Injecting rulesets to the manifest object](#injecting-rulesets-to-the-manifest-object)
     - [Example](#example)
     - [Included filter lists](#included-filter-lists)
-    - [Development](#development)
-        - [build:assets](#buildassets)
-        - [build:lib](#buildlib)
-        - [build:cli](#buildcli)
-        - [build:docs](#builddocs)
-        - [build](#build)
+    - [Managing `validator-data.json`](#managing-validator-datajson)
+        - [When to update](#when-to-update)
+        - [How to update](#how-to-update)
 
 ## Basic usage
 
@@ -53,6 +50,7 @@ Available commands:
 #### `load` command
 
 Downloads and saves DNR rulesets to the specified directory.
+
 ```bash
 dnr-rulesets load <path-to-output>
 ```
@@ -65,6 +63,7 @@ dnr-rulesets load <path-to-output>
 #### `manifest` command
 
 Patches the extension manifest to include DNR rulesets.
+
 ```bash
 dnr-rulesets manifest <path-to-manifest> <path-to-filters> [options]
 ```
@@ -86,11 +85,13 @@ dnr-rulesets manifest <path-to-manifest> <path-to-filters> [options]
 #### `watch` command
 
 Watches for changes in the filter files and rebuilds DNR rulesets.
+
 ```bash
 dnr-rulesets watch <path-to-manifest> <path-to-resources> [options]
 ```
 
 **Arguments:**
+
 - `<path-to-manifest>` - path to the manifest.json file
 - `<path-to-resources>` - folder with resources to build $redirect rules (can be obtained via `@adguard/tswebextension war` command)
 
@@ -118,17 +119,19 @@ dnr-rulesets exclude-unsafe-rules <dir> [options]
 ```
 
 **Arguments:**
+
 - `<dir>`: Path to the folder containing rulesets to process.
 
 **Options:**
+
 - `-j, --prettify-json <bool>`: Prettify JSON output (`true` or `false`, default: `true`)
 - `-l, --limit <number>`: Limit the number of unsafe rules to exclude. If the number of unsafe rules exceeds this limit, the command will throw an error.
 
 **Example:**
+
 ```bash
 dnr-rulesets exclude-unsafe-rules ./filters/declarative --prettify-json false --limit 100
 ```
-
 
 **Note about array options**: For options that accept multiple values (`ids` and `enable`), use please following syntax:
 
@@ -305,7 +308,6 @@ await excludeUnsafeRules('<path-to-rulesets-dir>', {
 });
 ```
 
-
 ### Output structure
 
 ```bash
@@ -395,6 +397,52 @@ Example of usage: [adguard-api-mv3](../examples/adguard-api-mv3)
 ## Included filter lists
 
 See the list of included filters in [FILTERS.md](FILTERS.md).
+
+## Managing `validator-data.json`
+
+The file `tasks/validator-data.json` serves two purposes:
+
+1. **Post-build validation** (`pnpm validate:assets`): after a build, the
+   validator compares the newly generated ruleset IDs and metadata keys against
+   this file. If they differ, the build fails with an error asking to update
+   the file and the changelog.
+
+2. **Pre-build allowlist** (auto-builds): when the environment variable
+   `DNR_FILTER_KNOWN_ONLY=true` is set (used in Docker/CI auto-builds for
+   stable branches), only filter IDs listed in this file are downloaded.
+   This prevents newly added filters in the FiltersRegistry from leaking into
+   older stable builds.
+
+### When to update
+
+Update `validator-data.json` whenever filters are **added to or removed from**
+the registry for a supported browser. Typical scenarios:
+
+- A new filter is published in the FiltersRegistry.
+- An existing filter is removed or its ID changes.
+
+### How to update
+
+1. Run a full build to download the latest filters and generate rulesets:
+
+   ```bash
+   pnpm build:assets
+   ```
+
+2. Run validation — it will fail and print the added/removed ruleset IDs:
+
+   ```bash
+   pnpm validate:assets
+   ```
+
+3. Update `tasks/validator-data.json` with the new data. The easiest way is to
+   copy the output from the build into the file, keeping the JSON structure
+   with per-browser entries (`chromium-mv3`, `opera-mv3`), each containing
+   `version`, `rulesetIds`, and `rulesetMetadataKeys`.
+
+4. Bump the package version and update the changelog.
+
+5. Commit the updated `validator-data.json` along with the version bump.
 
 ## Documentation
 

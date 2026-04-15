@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- Support for `DNR_FILTER_KNOWN_ONLY` environment variable in the auto-build
+  process. When set to `'true'`, only filters whose IDs are listed in
+  `validator-data.json` are downloaded and included in the build, preventing
+  newly added filters from leaking into older stable branches (to maintain build
+  reproducibility).
+
 ### Fixed
 
 - Smoke test failure in Docker CI by adding `--ignore-scripts` to
