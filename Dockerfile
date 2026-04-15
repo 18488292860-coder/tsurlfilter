@@ -648,7 +648,7 @@ RUN --mount=type=cache,target=/pnpm-store,id=tsurlfilter-pnpm \
     echo "${TEST_RUN_ID}" > /tmp/.test-run-id && \
     touch /tmp/.pre-build-marker && \
     npx lerna run increment:auto-deploy --scope @adguard/dnr-rulesets && \
-    npx lerna run build --scope @adguard/dnr-rulesets --include-dependencies && \
+    DNR_FILTER_KNOWN_ONLY=true npx lerna run build --scope @adguard/dnr-rulesets --include-dependencies && \
     npx lerna run test --scope @adguard/dnr-rulesets && \
     cd packages/dnr-rulesets && \
     pnpm tgz && \
