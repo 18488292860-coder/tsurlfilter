@@ -275,7 +275,9 @@ RUN --mount=type=cache,target=/pnpm-store,id=tsurlfilter-pnpm \
     fi; \
     set +e; \
     ./bamboo-specs/scripts/timeout-wrapper.sh 600s sh -c \
-      'cd packages/dnr-rulesets && pnpm lint && pnpm test:ci'; \
+      # Run assets validation last to to prevent JUnit XML report missing
+      # if the validation fails
+      'cd packages/dnr-rulesets && pnpm lint && pnpm test:ci && pnpm validate:assets'; \
     EXIT_CODE=$?; \
     if [ -d packages/dnr-rulesets/tests-reports ]; then \
       cp -R packages/dnr-rulesets/tests-reports/. /out/tests-reports/ && \

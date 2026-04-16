@@ -136,18 +136,20 @@ const validateRulesets = async (
     const addedRulesetIds = newData.rulesetIds.filter((id) => !oldData.rulesetIds.includes(id));
     const removedRulesetIds = oldData.rulesetIds.filter((id) => !newData.rulesetIds.includes(id));
 
+    // eslint-disable-next-line max-len
+    const RECOMMENDATION_MESSAGE = `Consider updating CHANGELOG.md and ${VALIDATOR_DATA_FILE_NAME} for the next build of ${browser} rulesets.\n`;
+
     if (addedRulesetIds.length > 0 || removedRulesetIds.length > 0) {
         const messageParts = [`Number of rulesets is changed comparing to the previous version (${oldData.version})`];
 
         if (addedRulesetIds.length > 0) {
-            messageParts.push(`Added rulesets: ${addedRulesetIds.join(', ')}`);
+            messageParts.push(`Added ruleset IDs: ${addedRulesetIds.join(', ')}`);
         }
         if (removedRulesetIds.length) {
-            messageParts.push(`Removed rulesets: ${removedRulesetIds.join(', ')}`);
+            messageParts.push(`Removed ruleset IDs: ${removedRulesetIds.join(', ')}`);
         }
 
-        // eslint-disable-next-line max-len
-        messageParts.push(`Consider updating changelog ${VALIDATOR_DATA_FILE_NAME} for the next build of ${browser} rulesets`);
+        messageParts.push(RECOMMENDATION_MESSAGE);
 
         throw new Error(messageParts.join('\n'));
     }
@@ -166,10 +168,12 @@ const validateRulesets = async (
         }
 
         // eslint-disable-next-line max-len
-        messageParts.push(`Consider bumping package version, updating changelog and ${VALIDATOR_DATA_FILE_NAME} for the next build of ${browser} rulesets`);
+        messageParts.push(`Consider bumping package version, updating CHANGELOG.md and ${VALIDATOR_DATA_FILE_NAME} for the next build of ${browser} rulesets.\n`);
 
         throw new Error(messageParts.join('\n'));
     }
+
+    console.log(`✅ Validation is ok for ${browser}`);
 };
 
 /**
