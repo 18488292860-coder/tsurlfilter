@@ -27,6 +27,7 @@
         "lint:code": "eslint --cache --ignore-path .gitignore .",
         "lint:types": "tsc",
         "lint:md": "markdownlint .",
+        "test:prod": "pnpm lint",
         "tgz": "pnpm pack --out eslint-plugin-logger-context.tgz"
     },
     "keywords": [

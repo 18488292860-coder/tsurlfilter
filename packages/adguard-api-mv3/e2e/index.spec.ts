@@ -10,8 +10,7 @@ describe('Adguard API MV3', () => {
      */
     it('Should not throw error on import outside of service worker', async () => {
         // eslint-disable-next-line import/extensions
-        const { AdguardApi } = await import('../dist/adguard-api');
-        // @ts-expect-error — bundled JS loses optional param info; params is optional in source
+        const { AdguardApi } = await import('@adguard/api-mv3');
         const adguardApi = await AdguardApi.create();
 
         expect(adguardApi).toBeDefined();
