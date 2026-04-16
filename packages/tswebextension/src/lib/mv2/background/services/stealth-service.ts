@@ -1,6 +1,7 @@
+import { type WebRequest } from 'webextension-polyfill';
+
 import { type NetworkRule, NetworkRuleOption, StealthOptionName } from '@adguard/tsurlfilter';
 import { RequestType } from '@adguard/tsurlfilter/es/request-type';
-import { type WebRequest } from 'webextension-polyfill';
 
 import { type StealthConfig } from '../../../common/configuration';
 import { FilteringEventType, type FilteringLogInterface } from '../../../common/filtering-log';

@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-import { program } from 'commander';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
+import { program } from 'commander';
 
 import { version } from '../../package.json';
 

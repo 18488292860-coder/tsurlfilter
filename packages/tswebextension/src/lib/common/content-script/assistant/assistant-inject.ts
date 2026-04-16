@@ -28,8 +28,9 @@
  *
  * Injection will be done by {@link AssistantRef.openAssistant}.
  */
-import { adguardAssistant, type Assistant } from '@adguard/assistant';
 import browser from 'webextension-polyfill';
+
+import { adguardAssistant, type Assistant } from '@adguard/assistant';
 
 // Import directly from files to avoid side effects of tree shaking.
 import { MessageType } from '../../message-constants';

@@ -1,4 +1,3 @@
-import { MatchingResult, RequestType } from '@adguard/tsurlfilter';
 import {
     afterEach,
     beforeEach,
@@ -7,6 +6,8 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import { MatchingResult, RequestType } from '@adguard/tsurlfilter';
 
 import {
     documentBlockingService,

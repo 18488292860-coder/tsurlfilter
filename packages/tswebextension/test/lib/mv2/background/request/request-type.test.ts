@@ -1,7 +1,8 @@
 /* eslint-disable guard-for-in */
-import { RequestType } from '@adguard/tsurlfilter';
 import { describe, expect, it } from 'vitest';
 import { type WebRequest } from 'webextension-polyfill';
+
+import { RequestType } from '@adguard/tsurlfilter';
 
 import { ContentType, getRequestType, type RequestTypeData } from '../../../../../src/lib/common/request-type';
 

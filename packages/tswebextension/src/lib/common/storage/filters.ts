@@ -1,5 +1,6 @@
-import { type ConversionData, conversionDataValidator } from '@adguard/tsurlfilter';
 import zod from 'zod';
+
+import { type ConversionData, conversionDataValidator } from '@adguard/tsurlfilter';
 
 import { IdbSingleton } from '../idb-singleton';
 import { logger } from '../utils/logger';

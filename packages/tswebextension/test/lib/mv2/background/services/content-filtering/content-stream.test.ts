@@ -1,11 +1,12 @@
-import { TextDecoder, TextEncoder } from '@adguard/text-encoding';
-import { RequestType } from '@adguard/tsurlfilter';
 import {
     describe,
     expect,
     it,
     vi,
 } from 'vitest';
+
+import { TextDecoder, TextEncoder } from '@adguard/text-encoding';
+import { RequestType } from '@adguard/tsurlfilter';
 
 import {
     type RequestContext,

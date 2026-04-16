@@ -1,3 +1,5 @@
+import browser from 'webextension-polyfill';
+
 import { LogLevel } from '@adguard/logger';
 import { FilterList } from '@adguard/tsurlfilter';
 import {
@@ -8,7 +10,6 @@ import {
     RULESET_NAME_PREFIX,
 } from '@adguard/tsurlfilter/es/declarative-converter';
 import { getRuleSetId } from '@adguard/tsurlfilter/es/declarative-converter-utils';
-import browser from 'webextension-polyfill';
 
 import { type AppInterface, type MessageHandler } from '../../common/app';
 import { ALLOWLIST_FILTER_ID, BLOCKING_TRUSTED_FILTER_ID, USER_FILTER_ID } from '../../common/constants';

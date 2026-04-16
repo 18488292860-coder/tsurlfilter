@@ -1,5 +1,6 @@
-import { CosmeticResult } from '@adguard/tsurlfilter';
 import { describe, expect, test } from 'vitest';
+
+import { CosmeticResult } from '@adguard/tsurlfilter';
 
 import { type RequestContext } from '../../../../../src/lib';
 import { TrustedTypesService } from '../../../../../src/lib/mv2/background/services/trusted-types-service';

@@ -1,3 +1,6 @@
+import { type IDBPDatabase } from 'idb';
+import browser from 'webextension-polyfill';
+
 import { fetchExtensionResourceText } from '@adguard/tsurlfilter';
 import {
     type IFilter,
@@ -11,8 +14,6 @@ import {
     type SerializedRuleSetData,
 } from '@adguard/tsurlfilter/es/declarative-converter';
 import { extractRuleSetId, getRuleSetId, getRuleSetPath } from '@adguard/tsurlfilter/es/declarative-converter-utils';
-import { type IDBPDatabase } from 'idb';
-import browser from 'webextension-polyfill';
 
 import { IdbSingleton } from '../../common/idb-singleton';
 import { FiltersStorage } from '../../common/storage/filters';

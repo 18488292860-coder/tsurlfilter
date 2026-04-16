@@ -1,10 +1,11 @@
-import { HTTPMethod, MatchingResult, RequestType } from '@adguard/tsurlfilter';
 import {
     beforeEach,
     describe,
     expect,
     it,
 } from 'vitest';
+
+import { HTTPMethod, MatchingResult, RequestType } from '@adguard/tsurlfilter';
 
 import { FilteringEventType } from '../../../../../src/lib/common/filtering-log';
 import { ContentType } from '../../../../../src/lib/common/request-type';

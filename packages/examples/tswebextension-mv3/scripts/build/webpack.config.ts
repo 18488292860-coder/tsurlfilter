@@ -1,11 +1,13 @@
-import { getIdFromFilterName } from '@adguard/tsurlfilter';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { Configuration } from 'webpack';
+
+import { getIdFromFilterName } from '@adguard/tsurlfilter';
 
 import packageJson from '../../package.json';
 

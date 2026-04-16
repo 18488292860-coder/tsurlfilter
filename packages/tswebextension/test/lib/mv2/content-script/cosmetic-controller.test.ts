@@ -2,7 +2,6 @@
  * @vitest-environment jsdom
  */
 
-import { CosmeticResult } from '@adguard/tsurlfilter';
 import {
     afterEach,
     beforeEach,
@@ -11,6 +10,8 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import { CosmeticResult } from '@adguard/tsurlfilter';
 
 import * as SendMessageModule from '../../../../src/lib/common/content-script/send-app-message';
 import { type ContentScriptCosmeticData } from '../../../../src/lib/common/cosmetic-api';

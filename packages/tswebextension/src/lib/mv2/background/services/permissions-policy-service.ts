@@ -1,10 +1,11 @@
+import { getDomain } from 'tldts';
+
 import {
     type NetworkRule,
     NetworkRuleOption,
     PERMISSIONS_POLICY_HEADER_NAME,
     RequestType,
 } from '@adguard/tsurlfilter';
-import { getDomain } from 'tldts';
 
 import { FilteringEventType, type FilteringLogInterface } from '../../../common/filtering-log';
 import { ContentType } from '../../../common/request-type';

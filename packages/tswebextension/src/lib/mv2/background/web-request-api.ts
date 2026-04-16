@@ -178,8 +178,9 @@
  *                                       │                             │
  *                                       └─────────────────────────────┘.
  */
-import { RequestType } from '@adguard/tsurlfilter/es/request-type';
 import browser, { type WebNavigation, type WebRequest } from 'webextension-polyfill';
+
+import { RequestType } from '@adguard/tsurlfilter/es/request-type';
 
 import { CommonAssistant, type CommonAssistantDetails } from '../../common/assistant';
 import { FRAME_DELETION_TIMEOUT_MS, MAIN_FRAME_ID } from '../../common/constants';

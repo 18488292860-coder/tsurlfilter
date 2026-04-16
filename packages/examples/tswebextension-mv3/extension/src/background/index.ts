@@ -1,3 +1,5 @@
+import browser from 'webextension-polyfill';
+
 import { type FilteringLogEvent } from '@adguard/tswebextension';
 import {
     Configuration,
@@ -8,7 +10,6 @@ import {
     MessageType,
     TsWebExtension,
 } from '@adguard/tswebextension/mv3';
-import browser from 'webextension-polyfill';
 
 import { EXTENSION_INITIALIZED_EVENT } from '../common/constants';
 import { Message } from '../message';

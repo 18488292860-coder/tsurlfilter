@@ -1,10 +1,11 @@
+import browser from 'webextension-polyfill';
+
 import {
     type CosmeticRule,
     type NetworkRule,
     NetworkRuleOption,
     RequestType,
 } from '@adguard/tsurlfilter';
-import browser from 'webextension-polyfill';
 
 import { defaultFilteringLog } from '../../../../common/filtering-log';
 import { type RuleTextProvider } from '../../../../common/utils/rule-text-provider';

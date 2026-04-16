@@ -1,3 +1,5 @@
+import path from 'path';
+
 import {
     AssetsLoader,
     excludeUnsafeRules,
@@ -5,7 +7,6 @@ import {
     ManifestPatcher,
 } from '@adguard/dnr-rulesets';
 import { copyWar } from '@adguard/tswebextension/cli';
-import path from 'path';
 
 import { ENABLED_FILTERS_IDS } from '../../constants';
 import { extraScripts } from '../../extension/src/extra-scripts';

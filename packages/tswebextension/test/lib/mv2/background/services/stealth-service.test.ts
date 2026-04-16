@@ -1,10 +1,3 @@
-import {
-    HTTPMethod,
-    MatchingResult,
-    type NetworkRule,
-    RequestType,
-    StealthOptionName,
-} from '@adguard/tsurlfilter';
 import { minify } from 'terser';
 import {
     beforeEach,
@@ -13,6 +6,14 @@ import {
     it,
 } from 'vitest';
 import { type WebRequest } from 'webextension-polyfill';
+
+import {
+    HTTPMethod,
+    MatchingResult,
+    type NetworkRule,
+    RequestType,
+    StealthOptionName,
+} from '@adguard/tsurlfilter';
 
 import { ContentType } from '../../../../../src/lib/common/request-type';
 import { StealthActions } from '../../../../../src/lib/common/stealth-actions';

@@ -1,3 +1,5 @@
+import browser from 'webextension-polyfill';
+
 import {
     CompatibilityTypes,
     type CosmeticOption,
@@ -12,7 +14,6 @@ import {
     setConfiguration,
 } from '@adguard/tsurlfilter';
 import { type IFilter, UnavailableFilterSourceError } from '@adguard/tsurlfilter/es/declarative-converter';
-import browser from 'webextension-polyfill';
 
 import { ALLOWLIST_FILTER_ID, USER_FILTER_ID } from '../../common/constants';
 import { logger } from '../../common/utils/logger';

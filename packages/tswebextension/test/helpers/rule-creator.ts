@@ -1,3 +1,5 @@
+import { isString } from 'lodash-es';
+
 import {
     type AnyCosmeticRule,
     type AnyRule,
@@ -14,7 +16,6 @@ import {
     RULE_INDEX_NONE,
     RuleFactory,
 } from '@adguard/tsurlfilter';
-import { isString } from 'lodash-es';
 
 /**
  * Helper function to create a network rule from a string or a parsed node.

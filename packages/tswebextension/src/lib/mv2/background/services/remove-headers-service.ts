@@ -1,5 +1,6 @@
-import { type NetworkRule, NetworkRuleOption, type RemoveHeaderModifier } from '@adguard/tsurlfilter';
 import { type WebRequest } from 'webextension-polyfill';
+
+import { type NetworkRule, NetworkRuleOption, type RemoveHeaderModifier } from '@adguard/tsurlfilter';
 
 import { FilteringEventType, type FilteringLogInterface } from '../../../common/filtering-log';
 import { findHeaderByName, removeHeader } from '../../../common/utils/headers';

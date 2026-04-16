@@ -1,5 +1,6 @@
-import { type CookieModifier, type NetworkRule, NetworkRuleOption } from '@adguard/tsurlfilter';
 import { getDomain } from 'tldts';
+
+import { type CookieModifier, type NetworkRule, NetworkRuleOption } from '@adguard/tsurlfilter';
 
 import { BrowserCookieApi } from '../../../../common/cookie-filtering/browser-cookie-api';
 import CookieRulesFinder from '../../../../common/cookie-filtering/cookie-rules-finder';

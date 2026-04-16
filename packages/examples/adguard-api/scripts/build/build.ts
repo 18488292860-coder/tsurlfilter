@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
-import { copyWar } from '@adguard/tswebextension/cli';
 import path from 'path';
+
+import { copyWar } from '@adguard/tswebextension/cli';
 
 import { BUILD_PATH, BUILD_ZIP_FILE_NAME, WEB_ACCESSIBLE_RESOURCES_PATH } from '../constants';
 

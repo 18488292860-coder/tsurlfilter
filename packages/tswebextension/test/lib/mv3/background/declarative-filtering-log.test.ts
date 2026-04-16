@@ -1,4 +1,3 @@
-import { type HTTPMethod } from '@adguard/tsurlfilter';
 import {
     beforeAll,
     beforeEach,
@@ -7,6 +6,8 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import { type HTTPMethod } from '@adguard/tsurlfilter';
 
 import { defaultFilteringLog, FilteringEventType } from '../../../../src/lib/common/filtering-log';
 import { type ContentType } from '../../../../src/lib/common/request-type';

@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
-import { NetworkRuleOption } from '@adguard/tsurlfilter';
 import { type Runtime } from 'webextension-polyfill';
+
+import { NetworkRuleOption } from '@adguard/tsurlfilter';
 
 import { MAIN_FRAME_ID } from '../../common/constants';
 import { type CookieRule } from '../../common/content-script/cookie-controller';

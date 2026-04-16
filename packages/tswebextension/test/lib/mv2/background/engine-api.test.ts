@@ -1,4 +1,3 @@
-import { type CosmeticOption, CosmeticResult, Engine } from '@adguard/tsurlfilter';
 import browser from 'sinon-chrome';
 import {
     afterAll,
@@ -11,6 +10,8 @@ import {
     type MockInstance,
     vi,
 } from 'vitest';
+
+import { type CosmeticOption, CosmeticResult, Engine } from '@adguard/tsurlfilter';
 
 import { type MatchQuery } from '../../../../src/lib/common/interfaces';
 import { Allowlist } from '../../../../src/lib/mv2/background/allowlist';

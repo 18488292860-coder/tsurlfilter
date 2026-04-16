@@ -1,5 +1,6 @@
 import { readFile } from 'fs/promises';
 import path from 'path';
+
 import { vi } from 'vitest';
 
 import { type ResourcesServiceInterface } from '../../../../../src/lib/mv2/background/services/resources-service';

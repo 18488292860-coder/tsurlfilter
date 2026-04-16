@@ -1,6 +1,7 @@
-import { NetworkRuleOption } from '@adguard/tsurlfilter';
 import { getDomain } from 'tldts';
 import type browser from 'webextension-polyfill';
+
+import { NetworkRuleOption } from '@adguard/tsurlfilter';
 
 import { MAIN_FRAME_ID } from '../../common/constants';
 import { type CookieRule } from '../../common/content-script/cookie-controller';

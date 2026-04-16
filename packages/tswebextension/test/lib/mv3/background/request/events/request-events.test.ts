@@ -1,4 +1,3 @@
-import { HTTPMethod } from '@adguard/tsurlfilter';
 import browser from 'sinon-chrome';
 import {
     describe,
@@ -7,6 +6,8 @@ import {
     vi,
 } from 'vitest';
 import { type WebRequest } from 'webextension-polyfill';
+
+import { HTTPMethod } from '@adguard/tsurlfilter';
 
 import { defaultFilteringLog, FilteringEventType } from '../../../../../../src/lib/common/filtering-log';
 import { DocumentLifecycle } from '../../../../../../src/lib/common/interfaces';

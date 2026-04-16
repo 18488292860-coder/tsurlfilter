@@ -1,4 +1,3 @@
-import { RequestType } from '@adguard/tsurlfilter/es/request-type';
 import {
     afterEach,
     beforeEach,
@@ -7,6 +6,8 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import { RequestType } from '@adguard/tsurlfilter/es/request-type';
 
 import { hideRequestInitiatorElement, InitiatorTag } from '../../../../../src/lib';
 import { BACKGROUND_TAB_ID } from '../../../../../src/lib/common/constants';

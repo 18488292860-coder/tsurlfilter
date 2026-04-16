@@ -2,7 +2,6 @@
  * @vitest-environment jsdom
  */
 
-import { NetworkRuleOption } from '@adguard/tsurlfilter';
 import {
     beforeEach,
     describe,
@@ -10,6 +9,8 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import { NetworkRuleOption } from '@adguard/tsurlfilter';
 
 import { CookieController } from '../../../../src/lib/common/content-script/cookie-controller';
 import { createNetworkRule } from '../../../helpers/rule-creator';

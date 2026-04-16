@@ -1,4 +1,3 @@
-import { type CosmeticResult, type MatchingResult } from '@adguard/tsurlfilter';
 import browser from 'sinon-chrome';
 import {
     beforeAll,
@@ -8,6 +7,8 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import { type CosmeticResult, type MatchingResult } from '@adguard/tsurlfilter';
 
 import { ContentType } from '../../../../../src/lib/common/request-type';
 import { Allowlist } from '../../../../../src/lib/mv2/background/allowlist';

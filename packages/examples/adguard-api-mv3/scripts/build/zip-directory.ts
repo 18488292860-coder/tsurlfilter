@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
-import archiver from 'archiver';
 import fs from 'fs';
+
+import archiver from 'archiver';
 // eslint-disable-next-line import/no-extraneous-dependencies
 
 /**

@@ -2,13 +2,6 @@
  * @vitest-environment jsdom
  */
 import {
-    CosmeticResult,
-    HTTPMethod,
-    MatchingResult,
-    type NetworkRule,
-    RequestType,
-} from '@adguard/tsurlfilter';
-import {
     afterEach,
     beforeEach,
     describe,
@@ -16,6 +9,14 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import {
+    CosmeticResult,
+    HTTPMethod,
+    MatchingResult,
+    type NetworkRule,
+    RequestType,
+} from '@adguard/tsurlfilter';
 
 import { type RequestContext, RequestContextState } from '../../../../../../src/lib';
 import { ContentType } from '../../../../../../src/lib/common/request-type';

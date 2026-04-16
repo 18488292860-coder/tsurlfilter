@@ -1,5 +1,6 @@
-import { type MatchingResult, type NetworkRule, StealthOptionName } from '@adguard/tsurlfilter';
 import browser from 'webextension-polyfill';
+
+import { type MatchingResult, type NetworkRule, StealthOptionName } from '@adguard/tsurlfilter';
 
 import { type StealthConfig } from '../../common/configuration';
 import { type FilteringLogInterface } from '../../common/filtering-log';

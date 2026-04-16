@@ -1,7 +1,8 @@
+import { z as zod } from 'zod';
+
 import { EXTENDED_CSS_VERSION } from '@adguard/extended-css/version';
 import { LogLevel } from '@adguard/logger';
 import { conversionDataValidator } from '@adguard/tsurlfilter';
-import { z as zod } from 'zod';
 
 import packageJson from '../../../package.json';
 

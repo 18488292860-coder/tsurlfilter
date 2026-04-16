@@ -1,9 +1,3 @@
-import {
-    HTTPMethod,
-    MatchingResult,
-    type NetworkRule,
-    RequestType,
-} from '@adguard/tsurlfilter';
 import browser from 'sinon-chrome';
 import {
     beforeEach,
@@ -13,6 +7,13 @@ import {
     vi,
 } from 'vitest';
 import polyfillBrowser from 'webextension-polyfill';
+
+import {
+    HTTPMethod,
+    MatchingResult,
+    type NetworkRule,
+    RequestType,
+} from '@adguard/tsurlfilter';
 
 import {
     engineApi,

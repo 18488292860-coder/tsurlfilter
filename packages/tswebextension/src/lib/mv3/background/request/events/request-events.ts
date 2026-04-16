@@ -1,5 +1,6 @@
-import { type HTTPMethod, RequestType } from '@adguard/tsurlfilter';
 import browser, { type WebRequest } from 'webextension-polyfill';
+
+import { type HTTPMethod, RequestType } from '@adguard/tsurlfilter';
 
 import { MAIN_FRAME_ID } from '../../../../common/constants';
 import { defaultFilteringLog, FilteringEventType } from '../../../../common/filtering-log';

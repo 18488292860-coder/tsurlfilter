@@ -1,8 +1,9 @@
+import { createRequire } from 'module';
+import path from 'path';
+
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { createRequire } from 'module';
-import path from 'path';
 import { Configuration } from 'webpack';
 
 import {

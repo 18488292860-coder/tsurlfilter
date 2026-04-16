@@ -1,5 +1,6 @@
-import { type NetworkRule, NetworkRuleOption } from '@adguard/tsurlfilter';
 import browser from 'webextension-polyfill';
+
+import { type NetworkRule, NetworkRuleOption } from '@adguard/tsurlfilter';
 
 import { type ConfigurationMV2 } from '../mv2/background/configuration';
 import { type EngineApi as EngineApiMV2 } from '../mv2/background/engine-api';

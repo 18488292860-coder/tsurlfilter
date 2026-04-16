@@ -146,8 +146,9 @@
  *                                       │                             │
  *                                       └─────────────────────────────┘.
  */
-import { NetworkRuleOption, RequestType } from '@adguard/tsurlfilter';
 import browser, { type WebNavigation, type WebRequest } from 'webextension-polyfill';
+
+import { NetworkRuleOption, RequestType } from '@adguard/tsurlfilter';
 
 import { CommonAssistant, type CommonAssistantDetails } from '../../common/assistant';
 import { companiesDbService } from '../../common/companies-db-service';

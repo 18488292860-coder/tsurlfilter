@@ -1,5 +1,6 @@
-import { CosmeticResult } from '@adguard/tsurlfilter';
 import { describe, expect, test } from 'vitest';
+
+import { CosmeticResult } from '@adguard/tsurlfilter';
 
 import { CosmeticApiCommon } from '../../../src/lib/common/cosmetic-api';
 import { createCosmeticRule } from '../../helpers/rule-creator';

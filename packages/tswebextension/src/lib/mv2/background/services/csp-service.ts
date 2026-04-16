@@ -1,5 +1,6 @@
-import { CSP_HEADER_NAME, NetworkRuleOption } from '@adguard/tsurlfilter';
 import { getDomain } from 'tldts';
+
+import { CSP_HEADER_NAME, NetworkRuleOption } from '@adguard/tsurlfilter';
 
 import { FilteringEventType, type FilteringLogInterface } from '../../../common/filtering-log';
 import { ContentType } from '../../../common/request-type';

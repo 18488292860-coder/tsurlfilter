@@ -58,10 +58,19 @@ module.exports = {
             'error',
             {
                 groups: [
-                    ['builtin', 'external'],
+                    'builtin',
+                    'external',
+                    'internal',
                     'parent',
                     'sibling',
+                    'index',
+                    'object',
                 ],
+                pathGroups: [
+                    // Place all our libraries after external
+                    { pattern: '@adguard/**', group: 'external', position: 'after' },
+                ],
+                pathGroupsExcludedImportTypes: [],
                 alphabetize: { order: 'asc', caseInsensitive: true },
                 'newlines-between': 'always',
             },

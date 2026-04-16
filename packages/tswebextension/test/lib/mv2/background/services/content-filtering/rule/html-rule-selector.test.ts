@@ -1,8 +1,9 @@
 /**
  * @vitest-environment jsdom
  */
-import { RawRuleConverter } from '@adguard/agtree';
 import { describe, expect, it } from 'vitest';
+
+import { RawRuleConverter } from '@adguard/agtree';
 
 import {
     HtmlRuleSelector,

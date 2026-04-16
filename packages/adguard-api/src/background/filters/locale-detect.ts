@@ -16,8 +16,9 @@
  * along with Adguard API. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { getDomain, isHttpRequest } from '@adguard/tswebextension';
 import browser, { Tabs } from 'webextension-polyfill';
+
+import { getDomain, isHttpRequest } from '@adguard/tswebextension';
 
 import { notifier, NotifierEventType } from '../notifier';
 import { Configuration } from '../schemas';

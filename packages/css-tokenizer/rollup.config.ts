@@ -5,12 +5,13 @@
  * ! does some additional work before and after running Rollup.
  */
 
+import { readFileSync } from 'fs';
+import path from 'path';
+
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
-import { readFileSync } from 'fs';
-import path from 'path';
 import { type RollupOptions } from 'rollup';
 import dtsPlugin from 'rollup-plugin-dts';
 

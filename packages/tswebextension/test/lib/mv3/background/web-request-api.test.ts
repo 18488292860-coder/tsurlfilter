@@ -1,4 +1,3 @@
-import { HTTPMethod, RequestType } from '@adguard/tsurlfilter';
 import {
     beforeEach,
     describe,
@@ -6,6 +5,8 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import { HTTPMethod, RequestType } from '@adguard/tsurlfilter';
 
 import { defaultFilteringLog } from '../../../../src/lib/common/filtering-log';
 import { DocumentLifecycle } from '../../../../src/lib/common/interfaces';

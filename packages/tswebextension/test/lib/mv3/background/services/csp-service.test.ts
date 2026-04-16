@@ -1,4 +1,3 @@
-import { RequestType } from '@adguard/tsurlfilter';
 import {
     beforeEach,
     describe,
@@ -6,6 +5,8 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import { RequestType } from '@adguard/tsurlfilter';
 
 import { defaultFilteringLog } from '../../../../../src/lib/common/filtering-log';
 import { CspService } from '../../../../../src/lib/mv3/background/services/csp-service';

@@ -1,4 +1,3 @@
-import { CosmeticResult, type MatchingResult } from '@adguard/tsurlfilter';
 import chrome from 'sinon-chrome';
 import {
     afterAll,
@@ -10,6 +9,8 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import { CosmeticResult, type MatchingResult } from '@adguard/tsurlfilter';
 
 import { CUSTOM_FILTERS_START_ID, USER_FILTER_ID } from '../../../../src/lib/common/constants';
 import { ContentType } from '../../../../src/lib/common/request-type';

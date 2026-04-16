@@ -1,15 +1,16 @@
 import {
-    HTTPMethod,
-    MatchingResult,
-    PERMISSIONS_POLICY_HEADER_NAME,
-    RequestType,
-} from '@adguard/tsurlfilter';
-import {
     afterEach,
     describe,
     expect,
     it,
 } from 'vitest';
+
+import {
+    HTTPMethod,
+    MatchingResult,
+    PERMISSIONS_POLICY_HEADER_NAME,
+    RequestType,
+} from '@adguard/tsurlfilter';
 
 import { FilteringEventType } from '../../../../../src/lib/common/filtering-log';
 import { ContentType } from '../../../../../src/lib/common/request-type';

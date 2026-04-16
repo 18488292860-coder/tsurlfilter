@@ -1,4 +1,3 @@
-import { MatchingResult } from '@adguard/tsurlfilter';
 import {
     beforeEach,
     describe,
@@ -6,6 +5,8 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import { MatchingResult } from '@adguard/tsurlfilter';
 
 import { type ConfigurationMV2Context } from '../../../../src/lib';
 import { defaultFilteringLog } from '../../../../src/lib/common/filtering-log';

@@ -1,6 +1,7 @@
+import { type WebRequest } from 'webextension-polyfill';
+
 import TextEncoding from '@adguard/text-encoding';
 import { RequestType } from '@adguard/tsurlfilter';
-import { type WebRequest } from 'webextension-polyfill';
 
 import { FilteringEventType, type FilteringLogInterface } from '../../../../common/filtering-log';
 import { logger } from '../../../../common/utils/logger';

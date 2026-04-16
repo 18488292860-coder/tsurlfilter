@@ -1,3 +1,5 @@
+import browser from 'webextension-polyfill';
+
 import {
     CompatibilityTypes,
     type CosmeticOption,
@@ -12,7 +14,6 @@ import {
     setConfiguration,
     STEALTH_MODE_FILTER_ID,
 } from '@adguard/tsurlfilter';
-import browser from 'webextension-polyfill';
 
 import { ALLOWLIST_FILTER_ID, USER_FILTER_ID } from '../../common/constants';
 import { type MatchQuery } from '../../common/interfaces';

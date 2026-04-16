@@ -1,4 +1,3 @@
-import { type NetworkRule } from '@adguard/tsurlfilter';
 import browser from 'sinon-chrome';
 import {
     afterEach,
@@ -8,6 +7,8 @@ import {
     it,
     vi,
 } from 'vitest';
+
+import { type NetworkRule } from '@adguard/tsurlfilter';
 
 import { MAIN_FRAME_ID, NO_PARENT_FRAME_ID } from '../../../../src/lib/common/constants';
 import { Frames } from '../../../../src/lib/common/tabs/frames';

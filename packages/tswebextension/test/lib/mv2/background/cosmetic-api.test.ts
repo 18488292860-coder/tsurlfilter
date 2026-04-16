@@ -1,4 +1,3 @@
-import { CosmeticResult, type CosmeticRule } from '@adguard/tsurlfilter';
 import {
     describe,
     expect,
@@ -6,6 +5,8 @@ import {
     test,
     vi,
 } from 'vitest';
+
+import { CosmeticResult, type CosmeticRule } from '@adguard/tsurlfilter';
 
 import { USER_FILTER_ID } from '../../../../src/lib/common/constants';
 import { CosmeticApi } from '../../../../src/lib/mv2/background/cosmetic-api';

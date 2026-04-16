@@ -1,6 +1,7 @@
+import browser, { type WebRequest } from 'webextension-polyfill';
+
 import { type HTTPMethod } from '@adguard/tsurlfilter';
 import { RequestType } from '@adguard/tsurlfilter/es/request-type';
-import browser, { type WebRequest } from 'webextension-polyfill';
 
 import { MAIN_FRAME_ID } from '../../../../common/constants';
 import { splitMultilineCookies } from '../../../../common/cookie-filtering/utils';
