@@ -26,7 +26,7 @@ import { declarativeFilteringLog } from './declarative-filtering-log';
 import DynamicRulesApi, { type ConversionResult } from './dynamic-rules-api';
 import { engineApi } from './engine-api';
 import { extSessionStorage } from './ext-session-storage';
-import FiltersApi, { type LoadFilterContent, type UpdateStaticFiltersResult } from './filters-api';
+import FiltersApi, { type UpdateStaticFiltersResult } from './filters-api';
 import { MessagesApi } from './messages-api';
 import { RequestEvents } from './request/events/request-events';
 import { RuleSetsLoaderApi } from './rule-sets-loader-api';
@@ -368,7 +368,7 @@ export class TsWebExtension implements AppInterface<
                 customFilters,
                 filtersIdsToEnable,
                 filtersIdsToDisable,
-            } = await TsWebExtension.getFiltersUpdateInfo(configuration, FiltersApi.loadFilterContent);
+            } = await TsWebExtension.getFiltersUpdateInfo(configuration);
 
             // Update list of enabled static filters
             res.staticFiltersStatus = await FiltersApi.updateFiltering(
@@ -728,18 +728,15 @@ export class TsWebExtension implements AppInterface<
      * Extract configuration update info from already parsed configuration.
      *
      * @param parsedConfiguration Already parsed {@link ConfigurationMV3}.
-     * @param loadFilterContent Lazy load filter content function.
      *
      * @returns Item of {@link FiltersUpdateInfo}.
      */
     private static async getFiltersUpdateInfo(
         parsedConfiguration: ConfigurationMV3,
-        loadFilterContent: LoadFilterContent,
     ): Promise<FiltersUpdateInfo> {
         // Wrap filters to tsurlfilter.IFilter
         const staticFilters = FiltersApi.createStaticFilters(
             parsedConfiguration.staticFiltersIds,
-            loadFilterContent,
         );
         const customFilters = FiltersApi.createCustomFilters(
             parsedConfiguration.customFilters,
