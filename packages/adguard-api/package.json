@@ -30,6 +30,7 @@
         "lint": "pnpm lint:code && pnpm lint:types",
         "lint:code": "eslint --cache --ignore-path .gitignore .",
         "lint:types": "tsc",
+        "test:prod": "pnpm lint",
         "tgz": "pnpm pack --out adguard-api.tgz"
     },
     "author": "Adguard Software Ltd.",

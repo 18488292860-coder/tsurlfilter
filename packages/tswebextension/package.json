@@ -93,7 +93,7 @@
         "test:coverage": "vitest run --coverage",
         "test:smoke": "pnpm run test:smoke:exports && (cd test/builders/rollup-ts && pnpm test)",
         "test:smoke:exports": "./test/smoke/exports/test.sh",
-        "test:prod": "pnpm lint && pnpm test:smoke && pnpm test -- --no-cache",
+        "test:prod": "pnpm lint && pnpm test:smoke && pnpm test:ci",
         "report-coverage": "cat ./coverage/lcov.info | coveralls",
         "precommit": "lint-staged",
         "prepublishOnly": "pnpm build",
