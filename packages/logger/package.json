@@ -60,6 +60,8 @@
         "eslint-config-airbnb-typescript": "catalog:",
         "eslint-plugin-import": "catalog:",
         "eslint-plugin-jsdoc": "catalog:",
+        "markdownlint": "catalog:",
+        "markdownlint-cli": "catalog:",
         "rimraf": "catalog:",
         "rollup": "catalog:",
         "tslib": "catalog:",

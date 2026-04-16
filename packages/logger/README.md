@@ -64,11 +64,14 @@ const logger = new Logger(writer);
 #### Verbose logging and trace output
 
 This mode is designed solely for development and debugging purposes,
-providing clickable call stack traces in the console for maximum insight into code execution.
+providing clickable call stack traces in the console
+for maximum insight into code execution.
 
-When the logger is set to `LogLevel.Verbose`, every log method except `error()` will print with a call stack trace.
+When the logger is set to `LogLevel.Verbose`, every log method except `error()`
+will print with a call stack trace.
 This helps track the flow of execution and diagnose complex issues.
-The stack trace is shown as a collapsed group in the console if the writer supports `groupCollapsed` and `groupEnd`,
+The stack trace is shown as a collapsed group in the console
+if the writer supports `groupCollapsed` and `groupEnd`,
 making logs more readable; otherwise, traces are printed expanded.
 
 To enable this behavior, the following conditions must be met:
