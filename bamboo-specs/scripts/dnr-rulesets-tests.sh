@@ -32,4 +32,8 @@ pnpm --filter @adguard/dnr-rulesets lint
 # Run tests
 pnpm --filter @adguard/dnr-rulesets test
 
+# Validate assets.
+# Run it after test to prevent JUnit XML report missing if validation fails.
+pnpm --filter @adguard/dnr-rulesets validate:assets
+
 echo "@adguard/dnr-rulesets tests completed"
