@@ -7,6 +7,16 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
 
+## Unreleased
+
+### Added
+
+- uBO scriptlet compatibility mapping for `google-ima3`, enabling
+  ADG→UBO and UBO→ADG conversion of `google-ima3`/`google-ima` scriptlet rules
+  ([FiltersCompiler#274]).
+
+[FiltersCompiler#274]: https://github.com/AdguardTeam/FiltersCompiler/issues/274
+
 ## 4.1.0
 
 ## Added
